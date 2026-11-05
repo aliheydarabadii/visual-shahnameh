@@ -1,0 +1,67 @@
+/*
+ * Design tokens. DESIGN.md explains each one; change them here only.
+ * Names use the Persian painter's word for each pigment.
+ */
+:root {
+  /* لاجورد — lapis night, from deepest to brightest */
+  --lajevard-1000: #03040a;
+  --lajevard-950: #05070f;
+  --lajevard-900: #0b1230;
+  --lajevard-800: #13204f;
+  --lajevard-600: #1f3a8a;
+  --lajevard-400: #4a6fd1;
+
+  /* طلا — shell gold */
+  --tala-100: #fbf1cf;
+  --tala-200: #f3dfa2;
+  --tala-400: #e2c06c;
+  --tala-500: #c9a043;
+  --tala-700: #8a6a22;
+
+  /* accents: use sparingly */
+  --shangarf: #c8442b; /* شنگرف — vermilion */
+  --firouzeh: #3fa7a3; /* فیروزه — turquoise */
+  --zangar: #2e7d6b; /* زنگار — malachite green */
+
+  /* کاغذ و مرکب — paper and ink, used for the closing page */
+  --kaghaz: #f2e8d3;
+  --kaghaz-shade: #e3d3ad;
+  --morakkab: #1d140b;
+
+  --gold-ink: linear-gradient(178deg, #fff6d8 0%, #f0d48a 38%, #d4a54a 70%, #9c7429 100%);
+  --text-halo: drop-shadow(0 0 0.35em rgb(3 4 10 / 0.85)) drop-shadow(0 0 1.2em rgb(3 4 10 / 0.6));
+  --verse-ink: #fff8e8;
+  --text-muted: #b9b097;
+  --control-bg: #090e1bf5;
+  --rule-quiet: #b99b5147;
+  --reading-strip: #0b1426ed;
+  --reading-padding: 24px;
+  --reading-shadow: 0 12px 40px rgb(3 4 10 / .3);
+  --reading-edge: #e2c06c40;
+  --reading-glass: #0b1426b3;
+  --reading-sheen: linear-gradient(135deg, #fff8e817, #fff8e803 38%, #e2c06c0a);
+  --reading-glass-shadow: inset 0 1px 0 #fff8e82e, inset 0 -1px 0 #e2c06c12, 0 12px 40px #03040a40;
+  --home-title-shade: radial-gradient(ellipse at 50% 30%, #03040ae6, #03040ab3 25%, #03040a00 75%);
+  --home-title-mask: radial-gradient(ellipse, #000 45%, #0000 75%);
+  --ending-veil: radial-gradient(ellipse at 50% 42%, color-mix(in srgb, var(--lajevard-900) 93%, transparent), color-mix(in srgb, var(--lajevard-1000) 88%, transparent));
+  --page-edge: clamp(1rem, 3vw, 3rem);
+  --book-width: clamp(20rem, 34vw, 38rem);
+
+  /* type */
+  --font-verse: "Noto Nastaliq Urdu", serif;
+  --font-ui: "Vazirmatn Variable", "Vazirmatn", system-ui, sans-serif;
+  --font-latin: "Cormorant Garamond", "Iowan Old Style", Georgia, serif; /* English lines only */
+  --verse-size: clamp(1.55rem, 1.15rem + 1vw, 2.4rem);
+  --title-size: clamp(2.4rem, 1.4rem + 3.4vw, 4.6rem);
+  --ui-size: 0.8125rem;
+
+  /* motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@media (max-height: 650px) {
+  :root {
+    --reading-padding: 16px;
+  }
+}

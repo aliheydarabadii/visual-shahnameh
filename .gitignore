@@ -1,0 +1,19 @@
+node_modules
+dist
+.cloudflare
+.venv
+.DS_Store
+source/raw.txt
+
+# Secrets (R2 credentials, local overrides). .env holds only safe defaults.
+.env.local
+.env.*.local
+
+# Optimized public/art AVIFs are versioned so a clone can run and deploy.
+# Original generated sources stay local.
+# Freshly generated PNGs, before conversion to AVIF.
+art/incoming/
+
+# Per-machine coordination and check output.
+work/
+output/

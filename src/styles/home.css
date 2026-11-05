@@ -1,0 +1,490 @@
+/*
+ * Home page and contents. The gateway painting is the whole world: it
+ * breathes toward its light, leans away from the pointer, and the reader
+ * dives into it to begin. DESIGN.md §2 describes the page.
+ */
+
+html.at-home {
+  overflow: hidden;
+}
+
+.home {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: var(--lajevard-1000);
+  --px: 0;
+  --py: 0;
+}
+
+/* ------------------------------------------------------------ the world */
+
+.home__world {
+  position: absolute;
+  translate: calc(var(--px) * -14px) calc(var(--py) * -10px);
+  scale: 1.18;
+  filter: brightness(0.35) blur(6px);
+  transition:
+    scale 3.2s var(--ease-out),
+    filter 2.4s var(--ease-out);
+}
+.home.is-awake.is-painted .home__world {
+  scale: 1;
+  filter: none;
+}
+
+.home__painting {
+  position: absolute;
+  inset: 0;
+  transform-origin: inherit;
+  animation: home-breathe 26s var(--ease-in-out) infinite alternate;
+}
+.home__painting img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+}
+
+@keyframes home-breathe {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.07);
+  }
+}
+
+/* Slow rays turning out of the gateway's light. */
+.home__rays {
+  position: absolute;
+  left: var(--lx);
+  top: var(--ly);
+  width: 150%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    color-mix(in srgb, var(--tala-200) 22%, transparent) 0deg 2.2deg,
+    transparent 2.2deg 11deg
+  );
+  mask-image: radial-gradient(closest-side, black 4%, rgb(0 0 0 / 0.5) 22%, transparent 62%);
+  mix-blend-mode: screen;
+  opacity: 0.55;
+  animation: home-turn 140s linear infinite;
+}
+
+@keyframes home-turn {
+  to {
+    rotate: 1turn;
+  }
+}
+
+/* The light itself, breathing. */
+.home__glow {
+  position: absolute;
+  left: var(--lx);
+  top: var(--ly);
+  width: 46%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--tala-100) 95%, transparent),
+    color-mix(in srgb, var(--tala-200) 45%, transparent) 14%,
+    color-mix(in srgb, var(--tala-500) 16%, transparent) 40%,
+    transparent 72%
+  );
+  mix-blend-mode: screen;
+  animation: home-pulse 7s var(--ease-in-out) infinite alternate;
+}
+
+@keyframes home-pulse {
+  from {
+    opacity: 0.55;
+    scale: 0.92;
+  }
+  to {
+    opacity: 1;
+    scale: 1.08;
+  }
+}
+
+/* Gold cloud bands drifting across the lower world. */
+.home__clouds {
+  position: absolute;
+  inset: 0;
+  translate: calc(var(--px) * -26px) calc(var(--py) * -14px);
+  mix-blend-mode: screen;
+  opacity: 0.4;
+  mask-image: linear-gradient(180deg, transparent 35%, black 75%);
+  animation: home-drift 38s var(--ease-in-out) infinite alternate;
+}
+.home__clouds img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@keyframes home-drift {
+  from {
+    transform: translateX(-2.5%) scale(1.1);
+  }
+  to {
+    transform: translateX(2.5%) scale(1.16);
+  }
+}
+
+.home__dust {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Night gathers at the edges and under the title. */
+.home__shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(70% 60% at var(--light-x) var(--light-y), transparent 30%, color-mix(in srgb, var(--lajevard-1000) 45%, transparent) 100%),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--lajevard-1000) 55%, transparent) 0%,
+      transparent 18%,
+      transparent 42%,
+      color-mix(in srgb, var(--lajevard-1000) 78%, transparent) 62%,
+      var(--lajevard-1000) 96%
+    );
+}
+
+/* White-gold light that fills the screen as the reader dives in. */
+.home__flood {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(circle at var(--light-x) var(--light-y), var(--tala-100) 0%, var(--tala-200) 45%, var(--tala-400) 100%);
+}
+
+/* ------------------------------------------------------------ the title */
+
+/*
+ * Hierarchy, top to bottom: the name (dominant), its English (directly under,
+ * as one unit), a quiet band of facts, then the way in, then the contents.
+ * Spacing steps: 0 · 1.1rem · 2.4rem · 1.2rem.
+ */
+.home__title {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 0 1.5rem max(env(safe-area-inset-bottom), 7vh);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.home__poet {
+  position: fixed;
+  top: max(env(safe-area-inset-top), 1.6rem);
+  inset-inline: 0;
+  margin: 0;
+  font-size: var(--ui-size);
+  letter-spacing: 0;
+  color: color-mix(in srgb, var(--tala-200) 70%, transparent);
+  opacity: 0;
+  transition: opacity 1.4s var(--ease-out) 1.4s;
+}
+
+.home__name {
+  margin: -0.42em 0 -0.18em;
+  font-family: var(--font-verse);
+  font-weight: 700;
+  font-size: clamp(4.4rem, 2.2rem + 6.6vw, 9rem);
+  line-height: 2.1;
+}
+.home__name span {
+  display: inline-block;
+  padding: 0.5em 0.3em;
+  margin-block: -0.5em;
+  background: var(--gold-ink);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 0.25em rgb(3 4 10 / 0.9)) drop-shadow(0 0 0.06em color-mix(in srgb, var(--tala-400) 60%, transparent));
+  /* Written in from right to left, like ink from a pen. */
+  clip-path: inset(-0.5em -0.5em -0.5em 100%);
+  transition: clip-path 2.2s var(--ease-in-out) 0.5s;
+}
+
+.home__en {
+  margin: 0;
+  font-family: var(--font-latin);
+  font-weight: 500;
+  font-size: clamp(0.92rem, 0.72rem + 0.55vw, 1.25rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--tala-200);
+  opacity: 0;
+  transition: opacity 1.6s var(--ease-out) 1.9s, letter-spacing 2.4s var(--ease-out) 1.9s;
+}
+.home__en em {
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0.04em;
+  font-size: 1.15em;
+  color: var(--tala-100);
+}
+.home__en-sep {
+  margin: 0 0.8em;
+  color: var(--tala-500);
+}
+
+/* Facts: ornament and numbers as one quiet band. */
+.home__ornament {
+  width: min(16rem, 62vw);
+  margin: 1.1rem 0 0;
+  color: color-mix(in srgb, var(--tala-400) 80%, transparent);
+  opacity: 0;
+  scale: 0.6 1;
+  transition: opacity 1.4s var(--ease-out) 2.2s, scale 1.8s var(--ease-out) 2.2s;
+}
+.home__facts {
+  margin: 0.15rem 0 0;
+  font-size: var(--ui-size);
+  color: color-mix(in srgb, var(--tala-200) 62%, transparent);
+  opacity: 0;
+  transition: opacity 1.4s var(--ease-out) 2.5s;
+}
+
+.home__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 2.4rem;
+  opacity: 0;
+  translate: 0 0.8rem;
+  transition: opacity 1.4s var(--ease-out) 2.7s, translate 1.4s var(--ease-out) 2.7s;
+}
+
+/* Begin: a pointed cartouche (کتیبه), Persian and English side by side. */
+.home__begin {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 17.5rem;
+  height: 3.75rem;
+  color: var(--tala-100);
+  text-decoration: none;
+  isolation: isolate;
+}
+.home__cartouche {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: visible;
+  filter: drop-shadow(0 0 1.4rem color-mix(in srgb, var(--tala-500) 26%, transparent));
+  transition: filter 0.3s var(--ease-out);
+}
+.home__cartouche path {
+  vector-effect: non-scaling-stroke;
+  transition: fill 0.3s var(--ease-out), stroke 0.3s var(--ease-out);
+}
+.home__cartouche-fill {
+  fill: color-mix(in srgb, var(--lajevard-900) 80%, transparent);
+  stroke: var(--tala-400);
+  stroke-width: 1.2;
+}
+.home__cartouche-inner {
+  fill: none;
+  stroke: color-mix(in srgb, var(--tala-400) 40%, transparent);
+  stroke-width: 0.8;
+}
+.home__begin-fa {
+  /* Nastaliq ascenders rise far above the line box, and background-clip only
+   * paints inside the box: pad it vertically (and pull the margins back). */
+  margin-block: -0.8em -0.65em;
+  padding: 0.5em 0.25em;
+  font-family: var(--font-verse);
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 2;
+  background: var(--gold-ink);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.home__begin-rule {
+  width: 1px;
+  height: 1.3rem;
+  background: color-mix(in srgb, var(--tala-400) 50%, transparent);
+}
+.home__begin-en {
+  font-family: var(--font-latin);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--tala-200);
+}
+@media (hover: hover) and (pointer: fine) {
+  .home__begin:hover .home__cartouche {
+    filter: drop-shadow(0 0 2rem color-mix(in srgb, var(--tala-200) 42%, transparent));
+  }
+  .home__begin:hover .home__cartouche-fill {
+    fill: color-mix(in srgb, var(--lajevard-800) 88%, transparent);
+    stroke: var(--tala-200);
+  }
+}
+.home__begin:focus-visible {
+  outline: none;
+}
+.home__begin:focus-visible .home__cartouche-fill {
+  stroke: var(--tala-100);
+  stroke-width: 2;
+}
+.home__begin:active .home__cartouche {
+  scale: 0.98;
+}
+
+/* Contents: a quiet line under the cartouche. */
+.home__open {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.25rem 0.4rem;
+  border-bottom: 1px solid transparent;
+  color: color-mix(in srgb, var(--tala-200) 80%, transparent);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+}
+.home__open-dot {
+  color: var(--tala-500);
+}
+.home__open-en {
+  font-family: var(--font-latin);
+  font-style: italic;
+  font-size: 0.98rem;
+  color: var(--tala-400);
+}
+@media (hover: hover) and (pointer: fine) {
+  .home__open:hover {
+    color: var(--tala-100);
+    border-bottom-color: color-mix(in srgb, var(--tala-400) 55%, transparent);
+  }
+}
+.home__open:focus-visible {
+  outline: 1px solid var(--tala-400);
+  outline-offset: 3px;
+}
+
+/* Awake: everything arrives in sequence. */
+.home.is-awake .home__poet {
+  opacity: 1;
+}
+.home.is-awake .home__actions {
+  opacity: 1;
+  translate: 0 0;
+}
+.home.is-awake .home__name span {
+  clip-path: inset(-0.5em);
+}
+.home.is-awake .home__en {
+  opacity: 1;
+  letter-spacing: 0.22em;
+}
+.home.is-awake .home__ornament {
+  opacity: 1;
+  scale: 1;
+}
+.home.is-awake .home__facts {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home__painting,
+  .home__rays,
+  .home__glow,
+  .home__clouds {
+    animation: none;
+  }
+  .home__world,
+  .home.is-awake.is-painted .home__world {
+    translate: none;
+    scale: 1;
+    filter: none;
+    transition: none;
+  }
+  .home__name span {
+    clip-path: none;
+  }
+  .home__poet,
+  .home__en,
+  .home__ornament,
+  .home__facts,
+  .home__actions {
+    transition-delay: 0s;
+  }
+}
+
+/* Keep the gateway and lettering; make all routes immediately available. */
+.home__title { gap: .75rem; padding-bottom: max(2rem, 7vh); }
+.home__name { margin: 0; font-size: clamp(3.6rem, 8vw, 7rem); line-height: 1.8; }
+.home__name span { margin: 0; padding: .1em .2em; color: var(--tala-200); background: none; filter: none; clip-path: none; transition: none; }
+.home__poet, .home__en, .home__facts, .home__ornament, .home__actions { opacity: 1; translate: none; scale: 1; transition: none; }
+.home__ornament { margin: .25rem 0; }
+.home__facts { margin: 0; color: var(--text-muted); }
+.home__actions { margin-top: 1.5rem; gap: 1rem; }
+.home__en, .home.is-awake .home__en { letter-spacing: .18em; }
+.home__begin-fa { margin: 0; padding: .1em .2em; background: none; color: var(--tala-100); font-size: 1.25rem; }
+.home__open { min-height: 44px; }
+@media (max-height: 650px) {
+  .home__title { gap: .4rem; padding-bottom: 1rem; }
+  .home__name { font-size: clamp(2.8rem, 7vw, 4.5rem); }
+  .home__poet { top: 1rem; }
+  .home__actions { margin-top: .5rem; gap: .4rem; }
+  .home__ornament { display: none; }
+}
+
+.home__title { inset-inline: max(1rem, calc((100vw - var(--book-width)) / 2)); width: auto; padding-inline: 0; }
+.home__en { text-wrap: balance; font-size: clamp(.9rem, 1.1vw, 1.05rem); }
+.home__name { font-size: clamp(3.5rem, 6vw, 6rem); }
+.home__en-sep { margin-inline: .35em; }
+@media (max-height: 650px) {
+  .home__title { bottom: 4rem; gap: .3rem; }
+  .home__name { font-size: 3rem; }
+  .home__facts { font-size: .7rem; }
+  .home__actions { margin-top: .3rem; gap: .2rem; }
+}
+
+/* Keep the author, book and last reading together on the central axis. */
+.home__title { bottom: max(5.5rem, env(safe-area-inset-bottom)); max-height: calc(100svh - 7rem); padding-bottom: 0; overflow-y: auto; scrollbar-width: thin; isolation: isolate; }
+.home__title::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--home-title-shade); mask-image: var(--home-title-mask); pointer-events: none; }
+.home__title > * { flex-shrink: 0; max-width: 100%; }
+.home__poet { position: static; inset: auto; margin: .15rem 0 .4rem; color: var(--kaghaz); }
+.home__actions { width: 100%; margin-top: .75rem; gap: .65rem; }
+.home__resume { display: grid; justify-items: center; gap: .5rem; width: 100%; margin-bottom: .65rem; }
+.home__resume-chapter, .home__resume-count { margin: 0; color: var(--text-muted); font-size: .75rem; line-height: 1.8; }
+.home__resume-title { margin: 0; color: var(--kaghaz); font: 500 .95rem/1.9 var(--font-ui); text-wrap: balance; }
+.home__resume-progress { display: block; appearance: none; width: min(12rem, 75%); height: 3px; border: 0; border-radius: 99px; overflow: hidden; background: var(--rule-quiet); color: var(--tala-400); }
+.home__resume-progress::-webkit-progress-bar { background: var(--rule-quiet); }
+.home__resume-progress::-webkit-progress-value { background: var(--tala-400); }
+.home__resume-progress::-moz-progress-bar { background: var(--tala-400); }
+@media (max-height: 650px) {
+  .home__title { bottom: 4.5rem; max-height: calc(100svh - 5rem); gap: .3rem; }
+  .home__poet { margin: 0; font-size: .75rem; }
+  .home__title.has-progress .home__facts { display: none; }
+  .home__resume { gap: .25rem; margin-bottom: .3rem; }
+  .home__actions { margin-top: .3rem; gap: .25rem; }
+}

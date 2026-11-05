@@ -1,0 +1,10 @@
+# Each package root installs independently and shares pnpm's content-addressable store.
+packages: []
+allowBuilds:
+  workerd: true
+minimumReleaseAgeExclude:
+  - '@cloudflare/build-output-utils@0.9.10'
+  - '@cloudflare/config@0.30.2'
+  - '@cloudflare/runtime-types@0.1.23'
+  - '@cloudflare/vite-plugin@2.0.0-beta.v.12'
+  - miniflare@5.20261104.0-beta

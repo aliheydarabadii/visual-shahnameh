@@ -1,0 +1,133 @@
+/* Native vertical contents browsing. The arches remain the book's doors. */
+html.at-contents { overflow-x: clip; scroll-padding-top: 6rem; }
+.contents { position: relative; min-height: 100svh; isolation: isolate; padding: 5.5rem var(--page-edge) 9rem; }
+.contents__backdrop { position: fixed; inset: 0; z-index: -1; background: center / cover no-repeat; opacity: .12; filter: blur(32px) saturate(.7); pointer-events: none; }
+.contents__head, .contents__collection { width: min(100%, var(--book-width)); margin-inline: auto; }
+.contents__head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: .5rem; padding-block: .5rem 2rem; }
+.contents__title { margin: 0; padding-block: .15em; font: 700 clamp(2rem, 1.4rem + 2vw, 3.25rem)/1.9 var(--font-verse); color: var(--tala-200); }
+.contents__count { margin: .25rem 0 0; color: var(--text-muted); font-size: .8125rem; }
+.contents__collection { display: grid; gap: 2.75rem; }
+.contents__era { min-width: 0; scroll-margin-top: 0; }
+.contents__era-head { display: flex; align-items: baseline; flex-wrap: wrap; justify-content: center; text-align: center; gap: .4rem .75rem; border-bottom: 1px solid var(--rule-quiet); padding-bottom: .8rem; margin-bottom: 1.5rem; }
+.contents__era-fa { margin: 0; color: var(--tala-200); font-size: 1.1rem; font-weight: 500; }
+.contents__doors { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 2.25rem 1.5rem; padding: 0; margin: 0; list-style: none; }
+.contents__door-item { min-width: 0; }
+.door { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 11rem; margin-inline: auto; text-align: center; color: var(--text-muted); text-decoration: none; border-radius: .25rem; }
+.door__arch { display: block; position: relative; width: 100%; aspect-ratio: 100 / 150; }
+.door:not(.is-lit) .door__arch { opacity: .55; }
+.door__inside {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 50% 46%, var(--lajevard-800), var(--lajevard-950) 72%);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 150' preserveAspectRatio='none'%3E%3Cpath d='M0 150 V62 C0 34 22 16 50 1 C78 16 100 34 100 62 V150 Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+}
+.door__inside img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.door__rosette {
+  width: 40%;
+  color: var(--tala-500);
+  opacity: 0.6;
+}
+.door__outline {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.door__outline path {
+  fill: none;
+  stroke: color-mix(in srgb, var(--tala-400) 60%, transparent);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.door__outline .door__outline-inner {
+  stroke: color-mix(in srgb, var(--tala-400) 28%, transparent);
+}
+.door.is-lit .door__outline path,
+.story__door.is-lit .door__outline path {
+  stroke: var(--tala-200);
+}
+
+
+.door__num { position: relative; display: grid; place-items: center; width: 2rem; height: 2rem; margin-top: -1rem; border: 1px solid var(--rule-quiet); border-radius: 50%; background: var(--lajevard-1000); font-size: .8rem; color: var(--tala-200); }
+.door.is-lit .door__num { border-color: var(--tala-400); }
+.door__title { padding-block: .25rem; margin-top: .25rem; font: 400 1.2rem/2.3 var(--font-verse); text-wrap: balance; }
+.door.is-lit .door__title { color: var(--kaghaz); }
+.door__meta { margin-top: .65rem; font-size: .75rem; line-height: 1.8; color: var(--text-muted); }
+.door.is-lit .door__meta { color: var(--tala-200); }
+.door:focus-visible { outline: 2px solid var(--tala-200); outline-offset: 8px; }
+@media (hover: hover) and (pointer: fine) {
+  .door:hover .door__outline path { stroke: var(--tala-100); }
+  .door:hover .door__title { text-decoration: underline; text-underline-offset: .4em; }
+}
+.contents__ages { position: fixed; z-index: 110; inset-inline: 1rem; bottom: calc(max(1rem, env(safe-area-inset-bottom)) + 3.5rem); width: min(var(--book-width), calc(100% - 2rem)); margin-inline: auto; display: flex; padding: .35rem .6rem; gap: .5rem; border: 1px solid var(--rule-quiet); border-radius: 999px; background: var(--control-bg); }
+.contents__age { flex: 1; min-width: 0; min-height: 44px; border: 0; border-bottom: 2px solid transparent; background: none; color: var(--text-muted); font: inherit; font-size: .8125rem; cursor: pointer; }
+.contents__age[aria-current] { color: var(--tala-100); border-bottom-color: var(--tala-400); }
+.contents__age:focus-visible { outline: 2px solid var(--tala-200); outline-offset: 1px; }
+
+/* One scroll container for the chapter and its sections. */
+.story { display: block; max-width: var(--book-width); margin: 1rem auto 0; }
+.story__intro { min-width: 0; display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); align-items: center; gap: 1.5rem; margin-bottom: 2.5rem; }
+.story__door { width: 100%; }
+.story__head { display: flex; flex-direction: column; align-items: center; gap: .65rem; text-align: center; min-width: 0; }
+.story__era { margin: 0; color: var(--text-muted); font-size: .75rem; line-height: 1.8; }
+.story__num { margin: 0; color: var(--tala-200); font-size: .8125rem; }
+.story__title { margin: 0; padding-block: .15em; color: var(--tala-200); font: 700 clamp(1.65rem, 2vw, 2.35rem)/2.1 var(--font-verse); text-wrap: balance; }
+.story__ornament { width: 8rem; height: auto; margin-block: .25rem; color: var(--tala-500); }
+.story__facts, .story__soon { margin: 0; font-size: .8125rem; line-height: 1.9; color: var(--text-muted); }
+.story__begin { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: .6rem 1.5rem; margin-top: .5rem; border: 1px solid var(--tala-500); border-radius: 999px; color: var(--tala-100); background: var(--lajevard-900); text-decoration: none; font-size: .875rem; }
+.story__reading { min-width: 0; padding-top: .75rem; }
+.story__list-title { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: .75rem; margin: 0; padding-bottom: 1.25rem; font-size: 1rem; font-weight: 500; color: var(--kaghaz); border-bottom: 1px solid var(--rule-quiet); }
+.story__list-title span { color: var(--text-muted); font-size: .75rem; font-weight: 400; }
+.story__sections { margin: 0; padding: 0; list-style: none; }
+.story__row { display: grid; grid-template-columns: 1.4rem minmax(0, 1fr); align-items: baseline; gap: .25rem .65rem; min-height: 56px; padding: 1.1rem .5rem; border-bottom: 1px solid var(--rule-quiet); color: var(--text-muted); text-decoration: none; line-height: 1.9; }
+.story__n { font-size: .75rem; font-variant-numeric: tabular-nums; }
+.story__name { font-size: .9375rem; overflow-wrap: anywhere; }
+.story__meta { grid-column: 2; font-size: .75rem; white-space: nowrap; }
+.story__section.is-lit .story__name { color: var(--kaghaz); }
+.story__section.is-lit .story__meta { color: var(--tala-200); }
+.story__row:focus-visible, .story__begin:focus-visible { outline: 2px solid var(--tala-200); outline-offset: 3px; }
+@media (hover: hover) and (pointer: fine) {
+  .story__section.is-lit .story__row:hover .story__name { color: var(--tala-100); text-decoration: underline; text-underline-offset: .3em; }
+  .story__begin:hover { background: var(--lajevard-800); }
+}
+@media (max-width: 760px) {
+  .contents { padding-top: 5.25rem; padding-bottom: 11rem; }
+  .contents__head { padding-bottom: 2rem; }
+  .contents__doors { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem 1.5rem; }
+  .door { max-width: 9rem; }
+  .door__title { font-size: 1.1rem; }
+  .door__meta { font-size: .6875rem; }
+  .contents__age { font-size: .75rem; }
+  .story { display: block; margin-top: .5rem; }
+  .story__intro { position: static; display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); gap: 1rem; align-items: center; margin-bottom: 2.5rem; }
+  .story__door { width: 100%; margin-top: 1rem; }
+  .story__head { align-items: center; text-align: center; gap: .65rem; }
+  .story__title { font-size: clamp(1.6rem, 6vw, 2.25rem); }
+  .story__ornament { display: none; }
+  .story__row { grid-template-columns: 1.4rem minmax(0, 1fr); gap: .25rem .5rem; padding-block: 1rem; }
+  .story__meta { grid-column: 2; }
+}
+
+/* The one-story prologue is a compact gateway, not an almost empty shelf. */
+#era-prologue { display: grid; grid-template-columns: 1fr; align-items: center; gap: 1.1rem; }
+#era-prologue .contents__era-head { display: flex; margin: 0; padding: 0; border: 0; }
+#era-prologue .contents__doors { display: block; }
+#era-prologue .door { display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); grid-template-rows: auto auto auto; align-items: center; gap: .2rem 1.25rem; max-width: 28rem; margin-inline: auto; text-align: start; }
+#era-prologue .door__arch { grid-row: 1 / 4; }
+#era-prologue .door__num { display: none; }
+#era-prologue .door__title, #era-prologue .door__meta { margin: 0; padding: 0; }
+@media (max-width: 760px) {
+  #era-prologue { grid-template-columns: 1fr; gap: 1.25rem; }
+  #era-prologue .contents__era-head { display: flex; }
+}
+
+
+.contents::before { content: ""; position: fixed; top: 0; inset-inline: 0; height: 5.5rem; z-index: 110; pointer-events: none; background: linear-gradient(180deg, var(--lajevard-1000) 10%, transparent); }
+.contents::after { content: ""; position: fixed; inset: auto 0 0; height: 4.75rem; z-index: 10; pointer-events: none; background: linear-gradient(180deg, transparent, var(--lajevard-1000) 70%); }

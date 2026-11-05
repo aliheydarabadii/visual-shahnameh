@@ -1,0 +1,16 @@
+# Cloudflare static-assets headers (copied into dist/).
+# Hashed build files never change: cache them for a year.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Paintings are never overwritten (a redone painting gets a new file name),
+# so they can be cached forever too. Only used when art is served from the
+# site itself; in production art comes from R2 with the same header.
+/art/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# The page itself must always revalidate so new sections appear.
+/
+  Cache-Control: public, max-age=0, must-revalidate
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate

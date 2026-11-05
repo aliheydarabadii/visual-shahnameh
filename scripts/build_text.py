@@ -1,0 +1,164 @@
+"""Build clean, structured Shahnameh text from the source PDF.
+
+Usage (from the project root):
+    .venv/bin/python -I scripts/build_text.py source/shahnameh-ferdowsi.pdf text/
+
+PDF layout facts this relies on (checked by hand on several pages):
+  * 15pt BNazaninBold = verse. Right column (x > page centre) holds the first
+    hemistich (مصراع اول), the left column holds the second. Rows align on y.
+    Justified rows are split into one text line per word, so words are
+    re-joined right-to-left by x.
+  * 30pt = chapter (book/king) title, alone on its own page.
+  * 21pt = section (sub-chapter) heading, placed between verse rows.
+  * BZarBold 14pt = page number at the bottom; Times "www.takbook.com" = footer.
+  * The لا ligature glyph is decoded by PyMuPDF in reverse order ("ال"), e.g.
+    پولاد -> "پوالد". The alef that comes from the ligature has a zero-width
+    glyph box, while a real alef does not, so only those pairs are swapped back.
+  * Some pages use Arabic yeh/kaf (ي ك); they are normalised to Persian ی ک.
+"""
+
+import json
+import os
+import sys
+
+import pymupdf
+
+VERSE_SIZE = 15
+CHAPTER_MIN = 25
+SECTION_MIN = 18
+ROW_TOLERANCE = 4  # points: words on the same row within one column
+PERSIAN_LETTERS = str.maketrans({"ي": "ی", "ك": "ک", "ى": "ی"})
+PAIR_TOLERANCE = 10  # points: first vs second hemistich; columns drift up to ~6pt, rows are 25pt apart
+
+
+def span_text(span):
+    chars = span["chars"]
+    out = []
+    i = 0
+    while i < len(chars):
+        c = chars[i]
+        nxt = chars[i + 1] if i + 1 < len(chars) else None
+        if c["c"] == "ا" and nxt and nxt["c"] == "ل" and c["bbox"][2] - c["bbox"][0] < 0.01:
+            out.append("لا")
+            i += 2
+            continue
+        out.append(c["c"])
+        i += 1
+    # The الله ligature is decoded as "اهلل"; it occurs once (الله اکبر).
+    return "".join(out).translate(PERSIAN_LETTERS).replace("اهلل", "الله")
+
+
+def page_events(page, page_index):
+    mid = page.rect.width / 2
+    headings = []
+    words = []  # (column, y, x, text)
+    for block in page.get_text("rawdict")["blocks"]:
+        for line in block.get("lines", []):
+            text = "".join(span_text(s) for s in line["spans"]).strip()
+            if not text:
+                continue
+            span = line["spans"][0]
+            size = round(span["size"])
+            font = span["font"]
+            x0, y0, x1, _ = line["bbox"]
+            if "Times" in font or font.startswith("BZar"):
+                continue  # footer url / page number
+            if size >= CHAPTER_MIN:
+                headings.append(("chapter", y0, text))
+            elif size >= SECTION_MIN:
+                headings.append(("section", y0, text))
+            elif size == VERSE_SIZE:
+                column = "first" if (x0 + x1) / 2 > mid else "second"
+                words.append((column, y0, x1, text))
+            else:
+                headings.append(("other", y0, f"{size}pt {font}: {text}"))
+
+    rows = {"first": [], "second": []}
+    for column, y, x, text in sorted(words, key=lambda w: (w[0], w[1], -w[2])):
+        col_rows = rows[column]
+        if col_rows and abs(col_rows[-1]["y"] - y) <= ROW_TOLERANCE:
+            col_rows[-1]["words"].append(text)
+        else:
+            col_rows.append({"y": y, "words": [text]})
+
+    events = []
+    anomalies = []
+    seconds = list(rows["second"])
+    for first in rows["first"]:
+        match = next((s for s in seconds if abs(s["y"] - first["y"]) <= PAIR_TOLERANCE), None)
+        if match is None:
+            anomalies.append((page_index + 1, "unpaired first", " ".join(first["words"])))
+            events.append(("couplet", first["y"], [" ".join(first["words"]), ""]))
+            continue
+        seconds.remove(match)
+        events.append(("couplet", first["y"], [" ".join(first["words"]), " ".join(match["words"])]))
+    for s in seconds:
+        anomalies.append((page_index + 1, "unpaired second", " ".join(s["words"])))
+        events.append(("couplet", s["y"], ["", " ".join(s["words"])]))
+
+    events.extend(headings)
+    events.sort(key=lambda e: e[1])
+    return events, anomalies
+
+
+def main():
+    src, out_dir = sys.argv[1], sys.argv[2]
+    os.makedirs(out_dir, exist_ok=True)
+    doc = pymupdf.open(src)
+
+    chapters = []
+    all_anomalies = []
+    started = False
+    for i, page in enumerate(doc):
+        events, anomalies = page_events(page, i)
+        if not started:
+            if any(e[0] == "chapter" for e in events):
+                started = True
+            else:
+                continue  # front matter and table of contents
+        all_anomalies.extend(anomalies)
+        for kind, _, payload in events:
+            if kind == "other":
+                all_anomalies.append((i + 1, "unexpected text", payload))
+            elif kind == "chapter":
+                chapters.append({"title": payload, "pdfPage": i + 1, "sections": []})
+            elif kind == "section":
+                chapters[-1]["sections"].append({"title": payload, "pdfPage": i + 1, "couplets": []})
+            else:
+                sections = chapters[-1]["sections"]
+                if not sections:  # verse before any section heading
+                    sections.append({"title": chapters[-1]["title"], "pdfPage": i + 1, "couplets": []})
+                sections[-1]["couplets"].append(payload)
+
+    # Number chapters, sections and couplets so other files can cite them.
+    for ci, chapter in enumerate(chapters, 1):
+        chapter["id"] = f"{ci:02d}"
+        for si, section in enumerate(chapter["sections"], 1):
+            section["id"] = f"{ci:02d}.{si:02d}"
+
+    with open(os.path.join(out_dir, "shahnameh.json"), "w", encoding="utf-8") as f:
+        json.dump({"source": os.path.basename(src), "chapters": chapters}, f, ensure_ascii=False, indent=1)
+
+    with open(os.path.join(out_dir, "shahnameh.md"), "w", encoding="utf-8") as f:
+        f.write("# شاهنامه فردوسی\n\n")
+        f.write("<!-- Generated by scripts/build_text.py. Each verse line is one couplet (بیت):\n")
+        f.write("     first hemistich, then ' / ', then second hemistich. Numbers in [] are\n")
+        f.write("     chapter.section ids and the PDF page where the heading appears. -->\n\n")
+        for chapter in chapters:
+            f.write(f"\n# {chapter['title']}  [{chapter['id']} · pdf p{chapter['pdfPage']}]\n")
+            for section in chapter["sections"]:
+                f.write(f"\n## {section['title']}  [{section['id']} · pdf p{section['pdfPage']}]\n\n")
+                for n, (a, b) in enumerate(section["couplets"], 1):
+                    f.write(f"{n}. {a} / {b}\n")
+
+    with open(os.path.join(out_dir, "anomalies.txt"), "w", encoding="utf-8") as f:
+        for page_no, kind, text in all_anomalies:
+            f.write(f"pdf p{page_no}\t{kind}\t{text}\n")
+
+    couplets = sum(len(s["couplets"]) for c in chapters for s in c["sections"])
+    sections = sum(len(c["sections"]) for c in chapters)
+    print(f"chapters={len(chapters)} sections={sections} couplets={couplets} anomalies={len(all_anomalies)}")
+
+
+if __name__ == "__main__":
+    main()
