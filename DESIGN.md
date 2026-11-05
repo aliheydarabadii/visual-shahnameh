@@ -309,11 +309,11 @@ Decisions, and why:
   - **Wheel and keys:** go through `Detents`, which writes `scrollY`. Without
     it, a single fling skipped several couplets.
   - **Assistive tech:** still reads the hidden article.
-- **2D transforms on a fixed stage, not CSS 3D or WebGL.** Depth is drawn as
-  scale plus clip-path portals. That is cheap, predictable and readable for the
-  next person. Persian text stays real DOM text, so shaping, selection and
-  accessibility are correct. Move to WebGL only if a future effect truly needs
-  shaders.
+- **A 2D canvas on a fixed stage.** Depth is drawn as scaled paintings and
+  circular portals in one bitmap. This avoids stale tiles from CSS masks over
+  transformed images during reverse scrubbing. Persian text stays real DOM
+  text, preserving shaping and accessibility. Light and dust are separate
+  overlays.
 - **Hash routing** (`#/01.01`) means no server rewrites are needed.
 - **No shared registry.** Section files are discovered with
   `import.meta.glob`, and the closing page's "next section" is worked out

@@ -26,6 +26,9 @@ Validation:
   readable verses. The test checks bitmap gaps; it cannot prove every physical
   GPU/browser combination is free of display-compositor faults.
 - Production deployment: `18ddaf63-9703-4a0b-8d15-17c0616166f7`.
+- Production 390×844: 180 further wheel samples with reversal pass with no
+  bitmap gaps. No legacy `.scene` masks remain. Previous button and ArrowLeft
+  both pass through intermediate beats and reach the expected stops.
 
 The public repository includes optimized AVIFs for a runnable clone. Generated
 sources, check output, review screenshots, dependencies, build output and local
