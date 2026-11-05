@@ -47,8 +47,25 @@ Validation performed locally:
 - Screenshot checking waits for decoded canvas paintings, not document images.
 - An isolated, application-free cf deployment dry run accepts the build.
 
+GitHub validation:
+
+- [Main run 42121413529](https://github.com/farzinnasiri/visual-shahnameh/actions/runs/42121413529)
+  passes Quality checks, including the Linux browser/audio check. The deploy job
+  installs the isolated CLI and passes its dry run, then fails closed at the
+  explicit missing-token check.
+- [PR run 42120261737](https://github.com/farzinnasiri/visual-shahnameh/actions/runs/42120261737)
+  passes its quality checks and skips both production packaging and deployment.
+  This was a Dependabot update proposal; it was not merged.
+- All nine GitHub dependency alerts are marked fixed; there are no open
+  dependency or secret-scanning alerts at verification time.
+- An initial main runner stalled downloading an optional font in Playwright's
+  dependency installer. CI now uses GitHub's installed Chrome instead, selected
+  through `CHROMIUM_EXECUTABLE_PATH`; local checks keep their existing default.
+
 The Cloudflare OAuth connection cannot create deployment API tokens (403 on
-token management). A dedicated environment token is requested through a private
-card. The first authenticated Actions deployment must pass before claiming the
-automatic publication setup is fully verified. No check guarantees the absence
-of all vulnerabilities; workflow/build/dependency changes need owner review.
+token management). The dedicated token's private request timed out without a
+value. Add `CLOUDFLARE_API_TOKEN` to the `production` environment and rerun the
+failed deployment job, or push to main after adding it. The first authenticated
+Actions deployment must pass before claiming automatic publication is fully
+verified. No check guarantees the absence of all vulnerabilities;
+workflow/build/dependency changes need owner review.
