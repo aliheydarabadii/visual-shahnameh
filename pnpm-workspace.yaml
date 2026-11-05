@@ -1,5 +1,8 @@
 # Each package root installs independently and shares pnpm's content-addressable store.
 packages: []
+overrides:
+  undici@<7.30.1: 7.30.1
+  zod@<4.6.6: 4.6.6
 allowBuilds:
   workerd: true
 minimumReleaseAgeExclude:

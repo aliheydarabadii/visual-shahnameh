@@ -189,7 +189,10 @@ async function check(id) {
     await page.waitForFunction(() => window.__journey, null, { timeout: 30000 });
     for (const u of beats) {
       await page.evaluate((u) => window.__journey.freezeAt(u), u);
-      await page.waitForFunction(() => [...document.images].every((i) => !i.src || i.complete), null, { timeout: 20000 }).catch(() => {});
+      await page.waitForFunction(() => {
+        const j = window.__journey;
+        return j && j.scenes.filter((node) => node.requested).every((node) => node.ready);
+      }, null, { timeout: 20000 });
       await page.waitForTimeout(250);
       const path = join(out, `${label}-${String(u).padStart(6, "0")}.jpg`);
       await page.screenshot({ path, type: "jpeg", quality: 70 });
@@ -233,8 +236,12 @@ async function check(id) {
   const peakDb = 20 * Math.log10(wav.peak || 1e-9);
   info.sound = `${wav.seconds.toFixed(0)}s, peak ${peakDb.toFixed(1)} dBFS`;
   if (peakDb > -1) errors.push(`score peaks at ${peakDb.toFixed(1)} dBFS (limit -1)`);
-  const ff = spawnSync("ffmpeg", ["-hide_banner", "-nostats", "-y", "-i", wavPath, "-af", "ebur128", "-c:a", "aac", "-b:a", "128k", join(out, "score.m4a")], { encoding: "utf8" });
-  if (ff.error) warnings.push("ffmpeg not found: loudness not measured");
+  const ff = spawnSync("ffmpeg", ["-hide_banner", "-nostats", "-y", "-i", wavPath, "-af", "ebur128=framelog=verbose", "-c:a", "aac", "-b:a", "128k", join(out, "score.m4a")], { encoding: "utf8" });
+  if (ff.error || ff.status !== 0) {
+    const message = `sound measurement failed: ${ff.error?.message ?? ff.stderr.slice(-1000)}`;
+    if (ff.error?.code === "ENOENT" && !process.env.CI) warnings.push(message);
+    else errors.push(message);
+  }
   else {
     const lufs = Number([...ff.stderr.matchAll(/I:\s+(-?[\d.]+) LUFS/g)].pop()?.[1]);
     info.sound += `, ${lufs} LUFS`;

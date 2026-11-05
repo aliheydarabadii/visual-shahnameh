@@ -1,17 +1,114 @@
-# شاهنامه‌ی دیدنی · Visual Shahnameh
+<p align="center">
+  <img src="public/favicon.svg" alt="Visual Shahnameh emblem" width="88" height="88">
+</p>
 
-Ferdowsi's Shahnameh as a journey inward. Scroll, and the camera moves
-forward into each painting's light and through a portal of gold to the next
-one, with the couplets appearing one by one in nastaliq.
+<h1 align="center">شاهنامه‌ی دیدنی<br>Visual Shahnameh</h1>
 
-Production domain: [shahnameh.world](https://shahnameh.world), hosted on Cloudflare Workers and its CDN.
-Cloudflare fallback: [visual-shahnameh.farzin-nasiri.workers.dev](https://visual-shahnameh.farzin-nasiri.workers.dev).
+<p align="center"><strong>A living, illuminated edition of the world's great Persian epic, one couplet at a time.</strong></p>
+<p align="center"><a href="https://shahnameh.world">Read the Shahnameh · شاهنامه بخوانید</a> · <a href="#contribute">Contribute</a> · <a href="CONTRIBUTING.md">Contributor guide</a></p>
 
-Progress: `pnpm run status` lists built sections, claims and the next section.
+<div dir="rtl" align="center">
 
-The repository includes the optimized AVIF paintings in `public/art/`, so a
-fresh clone can run and deploy the completed chapters. Original generated
-PNGs, local credentials and generated review output are excluded from git.
+به نام خداوند جان و خرد<br>
+کزین برتر اندیشه برنگذرد
+
+</div>
+
+![The Shahnameh gateway and Persian reading interface](docs/media/home.jpg)
+
+## Why we are building this
+
+We want every one of Ferdowsi's 49,615 couplets to have a place you can step
+inside. Persian miniature painting, Nastaliq poetry and a generative score
+turn the book into a journey through light, landscape and story. The ambition
+is the complete Shahnameh: fifty chapters, made carefully enough that the art
+serves the words.
+
+<div dir="rtl">
+
+شاهنامه میراثی برای خواندن و دوباره زیستن است. می‌خواهیم راهی بسازیم تا هر بیت،
+با نگارگری و موسیقی، دری به جهان فردوسی باز کند؛ برای فارسی‌زبانان امروز و
+نسل‌هایی که هنوز این داستان‌ها را نشنیده‌اند.
+
+</div>
+
+The reader is Persian and right-to-left. Scroll slowly into the paintings, or
+move between couplets with the arrow keys and on-screen controls. Your last
+reading position stays in your browser. Sound is synthesized locally, and the
+site respects reduced-motion preferences. No account is needed.
+
+![A couplet in Nastaliq over an illuminated miniature, with reading controls](docs/media/reader.jpg)
+
+## Inside the paintings
+
+Original generated illustrations follow a Timurid–Safavid miniature direction:
+mineral blues, shell gold, stacked landscapes and a luminous centre that opens
+into the next scene. Prompts and character sheets live beside the source so
+contributors can keep the story visually coherent.
+
+| The opening lamp | Fereydun at the Arvand |
+| --- | --- |
+| ![A gold and turquoise lamp under a lapis sky](docs/media/lamp.jpg) | ![Fereydun's crossing of the Arvand, in Persian miniature style](docs/media/arvand.jpg) |
+
+<div dir="rtl" align="center">
+
+توانا بود هر که دانا بود<br>
+ز دانش دل پیر برنا بود
+
+</div>
+
+## Run locally
+
+Use Node.js 24 and pnpm **12.16.1**, pinned in `package.json`.
+
+```sh
+git clone https://github.com/farzinnasiri/visual-shahnameh.git
+cd visual-shahnameh
+make install
+pnpm dev
+```
+
+Open `http://localhost:5173`. Optimized AVIF paintings are included, so a
+fresh clone can read the completed chapters immediately. To generate or check
+new sections, run `pnpm setup`, install Chromium with
+`pnpm exec playwright-core install chromium`, and install `ffmpeg`.
+
+```sh
+pnpm status             # completed sections, claims and the next section
+pnpm check 02.01        # text, paintings, screenshots and the full score
+pnpm build              # typecheck and production build
+```
+
+## Contribute
+
+Fork the repository, create a branch, and open a pull request to `main`.
+Farzin reviews and merges contributions. You do not need Cloudflare access.
+
+You can copy this prompt into a coding agent. Replace **X** with any positive
+whole number of chapters. A chapter can contain many sections, so a large X
+can mean a substantial amount of artwork and music.
+
+```text
+Build the next X chapters of Visual Shahnameh in this checkout.
+Read AGENTS.md (Orchestrator) and docs/BUILDER_BRIEF.md first and follow them.
+Use pnpm status and scripts/next_sections.mjs --chapters X to find the next
+unbuilt chapters. Plan and claim every section before starting builders.
+Keep consecutive story sections together. Use the image-generation accounts
+available in this environment; do not assume the owner's accounts are available.
+Ask before launching other agents unless I have already authorized them.
+Generate and personally review the paintings, preserve the source text exactly,
+compose the scores, and run the full section checks. Inspect both desktop and
+phone contact sheets. Write each section report and a batch report, stating
+anything that failed or was not verified. Release unfinished claims.
+Do not overwrite existing paintings, change shared engine code, deploy, or
+commit. Stop with a reviewable result and a list of the sections completed.
+```
+
+The prompt starts the process; a finished contribution still needs human
+judgment about the images, Persian text, transitions and sound. The
+[contributor guide](CONTRIBUTING.md) explains the quality gates and the
+[pull-request template](.github/pull_request_template.md) records what was
+actually verified. UI, accessibility and engine fixes are welcome too.
 
 ## Chapter checklist
 
@@ -72,36 +169,36 @@ The source heading 07.13 has no couplets; it is included as a title-only section
 - [ ] 49 · پادشاهی آزرم دخت (0/2 sections)
 - [ ] 50 · پادشاهی یزدگرد (0/14 sections)
 
-```sh
-pnpm run setup      # dependencies + Python venv for AVIF encoding
-pnpm dev        # open http://localhost:5173
-pnpm check 02.01   # verify a section end to end
-pnpm deploy     # typecheck, build and deploy to Cloudflare (see DEPLOY.md)
-```
+## Deployment and security
 
-To build more of the book with agents, open the project in any coding agent
-and ask, for example, "spawn 20 agents to build the next 20 sections". The
-agent follows `AGENTS.md`.
+[shahnameh.world](https://shahnameh.world) runs entirely on Cloudflare Workers
+Static Assets and its CDN. GitHub Actions checks pull requests without
+production credentials. An owner push or merge to `main` checks and builds the
+site, then deploys that exact build in a separate job. `develop`, if used,
+runs checks only. See [DEPLOY.md](DEPLOY.md) for the token and environment setup.
+
+Only **@farzinnasiri** may update `main` or `develop`. Contributors submit PRs;
+production credentials belong only in the restricted `production` environment,
+never in source, prompts, reports or browser-facing `VITE_` variables.
+
+See [SECURITY.md](SECURITY.md) for reporting a vulnerability.
+
+## Find your way around
 
 | Where | What |
 | --- | --- |
-| `DESIGN.md` | Vision, art direction, colour, type, motion and architecture |
-| `AGENTS.md` | How agents build sections, alone or many in parallel |
-| `art/` | Painting style guide, prompts, manifests, character sheets |
-| `docs/BUILDER_BRIEF.md` | The brief for agents building sections |
-| `reports/` | One report per built section |
-| `DEPLOY.md` | Cloudflare deployment, DNS and optional R2 migration |
-| `sound/` | The generative score's design guide |
-| `text/` | The full Shahnameh text (50 chapters, 646 sections, 49,615 couplets) |
-| `src/` | Engine and content |
+| [DESIGN.md](DESIGN.md) | Art direction, typography, motion and architecture |
+| [AGENTS.md](AGENTS.md) | Section planning, claims and builder responsibilities |
+| [art/STYLE.md](art/STYLE.md) | Painting rules and prompt template |
+| [art/characters/](art/characters/) | Recurring character sheets |
+| [docs/BUILDER_BRIEF.md](docs/BUILDER_BRIEF.md) | Complete builder checklist |
+| [reports/](reports/) | Section results and known limitations |
+| [sound/SOUND.md](sound/SOUND.md) | Generative music and sound criteria |
+| [text/](text/) | The complete source text and table of contents |
+| [DEPLOY.md](DEPLOY.md) | Cloudflare hosting, CI and DNS |
 
 Source text: takbook.com PDF edition, after Fereydoun Joneydi's 1354 edition
-(`source/shahnameh-ferdowsi.pdf`).
-
-## Package manager
-
-Use pnpm 12.16.1, pinned in `package.json`. Run `make install` to install the
-locked dependencies with `pnpm install --frozen-lockfile`. Commit `pnpm-lock.yaml`
-when changing dependencies. Keep each package root independent; pnpm shares package
-contents through its global store. Do not commit `node_modules` or create npm/yarn
-lockfiles. Dependency build permissions live in `pnpm-workspace.yaml`.
+([source PDF](source/shahnameh-ferdowsi.pdf)). Couplets are preserved verbatim.
+Illustrations are generated for this project; documentation previews are
+smaller JPEG copies of the shipped AVIF paintings. Original generated PNGs,
+local credentials and generated check output are excluded from Git.

@@ -29,6 +29,62 @@ and `pnpm-lock.yaml`; required `workerd` install scripts are allowed in
 
 ## Deploy
 
+### Automatic deployment from GitHub
+
+`.github/workflows/ci.yml` checks PRs and pushes to `main` and `develop`.
+Only a push to this repository's `main` by `farzinnasiri` packages a production
+artifact. After the quality job passes, a fresh job downloads that artifact
+and deploys with the pinned `cf` CLI. It does not check out the application,
+run application install/build scripts, restore a shared cache, or consume PR
+artifacts. Actions are pinned to full commit SHAs and use a read-only token.
+
+The `production` GitHub environment allows the `main` branch only. Store:
+
+| Type | Name | Value |
+| --- | --- | --- |
+| Environment secret | `CLOUDFLARE_API_TOKEN` | A dedicated, restricted deployment token |
+| Environment variable | `CLOUDFLARE_ACCOUNT_ID` | The hosting account ID |
+
+Create the token in Cloudflare's **My Profile → API Tokens**. Grant Workers
+Editor access to the `visual-shahnameh` Worker only, using the account's
+resource selector. For the CLI's account lookup and the configured custom
+domain, grant Account Settings Read for the hosting account and Zone Read /
+Workers Routes Write for `shahnameh.world` only. Do not grant DNS Edit, R2,
+database, billing or API-token-management permissions. Do not use a global
+API key or copy a local OAuth login into CI. Set an expiration and rotate the
+environment secret before it expires. See Cloudflare's
+[CI authentication](https://developers.cloudflare.com/cf/ci/) and
+[Workers permissions](https://developers.cloudflare.com/workers/authorization/workers/).
+
+Add the token through GitHub's private environment-secret form, or use
+`gh secret set CLOUDFLARE_API_TOKEN --repo farzinnasiri/visual-shahnameh --env production`
+with a private prompt or file input. Never paste its value into an issue,
+commit, report or chat. The Cloudflare MCP OAuth connection cannot create API
+tokens; that setup requires the account owner.
+
+The token is injected only into the final deploy step. Forks, PR checks and
+`develop` receive no production secret. There are no `pull_request_target`,
+`workflow_run` or reusable privileged workflow triggers. Code merged into
+`main` becomes trusted publication code, so Farzin must review workflow,
+dependency and build-script changes before merging. Never run unreviewed PR
+code with this environment. See GitHub's
+[secret handling](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets).
+
+Repository rules restrict updates to `main` and `develop` to the individual
+owner account `farzinnasiri`. A separate rule blocks force pushes and deletion
+without a bypass. The owner can bypass the PR/check gate for a direct push;
+others contribute through forks and PRs. Normal contribution PRs require an
+owner review, resolved discussions and `Quality checks`. Keep these rules
+when adding collaborators. `develop` need not exist for its protections to
+apply when it is created.
+
+To inspect a run: **Actions → CI → latest main push**. A successful run has
+both **Quality checks** and **Deploy to Cloudflare** green. The deploy job's
+environment link opens the production site. If the token is missing or
+expired, deployment fails; quality checks still run without it.
+
+### Manual owner deployment
+
 ```sh
 make install                              # pnpm install --frozen-lockfile
 pnpm typecheck

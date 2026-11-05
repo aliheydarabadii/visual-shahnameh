@@ -3,7 +3,8 @@
 A browser-only, Persian (RTL) visual Shahnameh. Scrolling moves the camera
 forward through paintings while the couplets appear one by one, over a
 generative score. It is a static Vite + TypeScript site; paintings are
-served from Cloudflare R2 in production (`DEPLOY.md`).
+served by Cloudflare Workers Static Assets in production; R2 is an optional
+future migration (`DEPLOY.md`).
 
 The book has 50 chapters (داستان) and 646 sections (بخش). The unit of work is
 one **section**: its couplets, 3–40 paintings (about one per 3–6 couplets), a score. Many agents build
