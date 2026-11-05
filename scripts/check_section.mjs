@@ -44,7 +44,7 @@ await server.listen();
 const base = server.resolvedUrls.local[0].replace(/\/$/, "");
 const cache = `${homedir()}/Library/Caches/ms-playwright`;
 const dir = existsSync(cache) ? readdirSync(cache).filter((d) => /^chromium-\d+$/.test(d)).sort().pop() : null;
-const executablePath = dir ? `${cache}/${dir}/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing` : undefined;
+const executablePath = process.env.CHROMIUM_EXECUTABLE_PATH || (dir ? `${cache}/${dir}/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing` : undefined);
 const browser = await chromium.launch({ executablePath });
 
 let failed = 0;

@@ -32,8 +32,14 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm audit --audit-level=low
       - run: pnpm build
-      - run: pnpm exec playwright-core install --with-deps chromium
-      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Use the runner's installed Chrome
+        run: echo "CHROMIUM_EXECUTABLE_PATH=$(command -v google-chrome)" >> "$GITHUB_ENV"
+      - name: Install the audio checker
+        run: |
+          if ! command -v ffmpeg; then
+            sudo apt-get update -o Acquire::Retries=1 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30
+            sudo apt-get install -y ffmpeg
+          fi
       - name: Verify sections and immutable paintings
         run: node scripts/ci_sections.mjs
         env:
@@ -90,7 +96,12 @@ jobs:
         env:
           CF_SEND_TELEMETRY: 'false'
       - name: Deploy the exact build
-        run: '"$RUNNER_TEMP/deployer/node_modules/.bin/cf" deploy --prebuilt --mode production'
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo '::error::Add CLOUDFLARE_API_TOKEN to the production environment secrets.'
+            exit 1
+          fi
+          "$RUNNER_TEMP/deployer/node_modules/.bin/cf" deploy --prebuilt --mode production
         env:
           CF_SEND_TELEMETRY: 'false'
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
