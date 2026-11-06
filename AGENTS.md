@@ -71,7 +71,7 @@ Also needed: Playwright's Chromium (`pnpm exec playwright-core install chromium`
    Builders work in this same folder; they do not need branches or worktrees.
 6. **When they finish,** run
    `node scripts/check_section.mjs <every id>` and look at each
-   `work/checks/<id>/sheet-desktop.jpg`. Write `reports/batch-<date>.md`:
+   `work/checks/<id>/sheet-desktop.jpg`. Write `work/batch-<date>.md`:
    per section ✓/✗ from the check, the builder's report summary, problems,
    and what to improve in this guide. Release claims of sections that were
    not finished: `--release <id>`.
@@ -110,6 +110,9 @@ Follow `docs/BUILDER_BRIEF.md`; it is the complete checklist. In short:
   `reports/<id>.md`, and new files in `art/characters/`. Everything else is
   shared: don't edit `src/engine`, `src/styles`, `src/home`,
   `src/content/*.ts`, `scripts`, or the docs. Propose changes in your report.
+- **Keep the repository concise.** Section reports belong in `reports/<id>.md`.
+  Put batch logs, investigations, comparisons and other temporary notes in the
+  ignored `work/` directory. Do not add a public report for routine changes.
 - **No shared registry.** Sections are discovered from
   `src/content/sections/`, and the "next section" link is worked out from
   the table of contents. There is nothing to register or link.

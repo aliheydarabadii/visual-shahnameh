@@ -59,7 +59,7 @@ contributors can keep the story visually coherent.
 
 ## Run locally
 
-Use Node.js 24 and pnpm **12.16.1**, pinned in `package.json`.
+Use Node.js **24.22 or newer in the 24 LTS line** and pnpm **12.16.1**, pinned in `package.json`.
 
 ```sh
 git clone https://github.com/farzinnasiri/visual-shahnameh.git

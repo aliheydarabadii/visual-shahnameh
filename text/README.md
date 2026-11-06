@@ -25,8 +25,6 @@ text, titles and IDs. For example, chapter `08` contains sections `08.01`
 through `09.31`; chapter `61` contains `50.01` through `50.14`.
 The chapter organization matches the reference; the finer subsection divisions
 and existing PDF verse pairings have not been replaced with Ganjoor's text.
-See the [source comparison](../reports/chapter-structure-2026-11-06.md)
-and [completed migration](../reports/chapter-migration-2026-11-06.md).
 
 The first sub-chapter, آغاز کتاب → آغاز کتاب, is section `01.01` (15 couplets).
 
@@ -79,6 +77,6 @@ Some opening hemistichs land in the preceding local section. For example,
 with its first hemistich for Qobad, paired with different second hemistichs.
 Physical PDF page 1480 itself prints a pairing that differs from Ganjoor.
 Review the PDF's pairings as well as extraction boundaries and the ten
-hemistich anomalies before building the affected passages. The research
-report records these examples. Regrouping preserves the existing text and
-section boundaries; these editorial issues still need a separate source review.
+hemistich anomalies before building the affected passages. Regrouping preserves
+the existing text and section boundaries; these editorial issues still need a
+separate source review.
