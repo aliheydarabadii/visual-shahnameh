@@ -1,5 +1,16 @@
 # Public repository and deployment setup
 
+## Completed on 2026-11-06
+
+The owner supplied the dedicated deployment token through a private secret
+field. It was saved as `CLOUDFLARE_API_TOKEN` in GitHub's `production`
+environment. [Run 42122100577, attempt 2](https://github.com/farzinnasiri/visual-shahnameh/actions/runs/42122100577)
+passes both Quality checks and Deploy to Cloudflare. Authenticated automatic
+deployment is now verified. The notes below preserve the initial setup and
+the credential issue encountered before this successful run.
+
+## Initial setup
+
 README: existing emblem, home and reader screenshots, two smaller painting
 previews, Persian couplets verified against the source, project purpose,
 local setup, copyable next-X-chapters prompt and the retained 50-chapter checklist.

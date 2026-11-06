@@ -59,8 +59,8 @@ environment secret before it expires. See Cloudflare's
 Add the token through GitHub's private environment-secret form, or use
 `gh secret set CLOUDFLARE_API_TOKEN --repo farzinnasiri/visual-shahnameh --env production`
 with a private prompt or file input. Never paste its value into an issue,
-commit, report or chat. The Cloudflare MCP OAuth connection cannot create API
-tokens; that setup requires the account owner.
+commit, report or chat. Use a dedicated deployment token for CI rather than
+an interactive MCP or CLI OAuth login.
 
 The token is injected only into the final deploy step. Forks, PR checks and
 `develop` receive no production secret. There are no `pull_request_target`,
