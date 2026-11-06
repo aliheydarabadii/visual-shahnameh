@@ -128,9 +128,9 @@ The `work/claims/` locks still coordinate agents sharing one checkout.
 ## Chapter checklist
 
 As of 2026-11-06, chapters 01–07 are complete through **07.18, درگذشتن فریدون**.
-The app includes **42 of 645 sections** and **2,033 couplets**, with paintings
+The app includes **44 of 645 sections** and **2,162 couplets**, with paintings
 and generative music.
-Next: **09.03, آگاه شدن سام نریمان، از زال**. Unchecked chapters remain to be illustrated and scored.
+Next: **09.04, آگاه شدن منوچهر از کار سام و زال**. Unchecked chapters remain to be illustrated and scored.
 
 Open any of the 61 chapters below to see its subsections.[^chapters]
 Checked items are complete. The full text is available in [Markdown](text/shahnameh.md),
@@ -219,12 +219,12 @@ Checked items are complete. The full text is available in [Markdown](text/shahna
 </details>
 
 <details>
-<summary>○ 08 · منوچهر (3/32 sections)</summary>
+<summary>○ 08 · منوچهر (5/32 sections)</summary>
 
 - [x] [08.01 · پادشاهی منوچهر](src/content/sections/08-01.ts)
 - [x] [09.01 · داستان زال و رودابه](src/content/sections/09-01.ts)
 - [x] [09.02 · پناه دادن سیمرغ، زال را](src/content/sections/09-02.ts)
-- [ ] 09.03 · آگاه شدن سام نریمان، از زال
+- [x] [09.03 · آگاه شدن سام نریمان، از زال](src/content/sections/09-03.ts)
 - [ ] 09.04 · آگاه شدن منوچهر از کار سام و زال
 - [ ] 09.05 · رفتن زال به سوی کابل
 - [ ] 09.06 · دل باختن زال به رودابه
@@ -233,7 +233,7 @@ Checked items are complete. The full text is available in [Markdown](text/shahna
 - [ ] 09.09 · بازگشتن کنیزکان به نزد رودابه
 - [ ] 09.10 · رای زدن زال با موبدان در کار رودابه
 - [ ] 09.11 · نامه زال به نزدیک سام
-- [ ] 09.12 · رای زدن سام با موبدان در کار زال
+- [x] [09.12 · رای زدن سام با موبدان در کار زال](src/content/sections/09-12.ts)
 - [ ] 09.13 · آگاه شدن سیندخت از شیفتگی زال و رودابه
 - [ ] 09.14 · آگاه شدن مهراب از کار رودابه
 - [ ] 09.15 · آگاه شدن منوچهر از کار زال
