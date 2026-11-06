@@ -1,79 +1,48 @@
 # Contributing
 
-Fork the repository, work on a branch, and open a PR to `main`. Only
-[@farzinnasiri](https://github.com/farzinnasiri) can update the protected book
-branches or merge a PR. `develop` is optional and never deploys.
+Fork the repository, work on a branch, and open a pull request to `main`.
 
-## Build more of the book
+## Add chapters
 
-Copy the [chapter-building prompt in the README](README.md#contribute) into
-your coding agent and replace X with any positive integer. Read [AGENTS.md](AGENTS.md)
-and the full [builder brief](docs/BUILDER_BRIEF.md). Chapter sizes vary greatly;
-plan by couplet count and keep consecutive story sections together.
+> **Codex is required for image generation.** Install the Codex app and sign
+> in with your own account. If you do not have Codex, do not use the
+> chapter-building prompt.
 
-**Generate all illustrations in your own Codex app, using your own Codex
-account.** A Codex account is required for image-generation contributions.
-Visual Shahnameh is the reading experience, not an image generator or an
-account-sharing service. Coordinate your proposed
-chapter range in an issue or draft PR before a large run. Claims in `work/`
-coordinate agents in one checkout; they do not reserve sections across forks.
+You can use Codex, Claude or Grok as your coding agent, with Codex generating
+images. Copy the [prompt in the README](README.md#contribute) and replace X
+with the number of chapters to build. The agent follows [AGENTS.md](AGENTS.md)
+and the [builder brief](docs/BUILDER_BRIEF.md) for the text, paintings, music
+and section checks.
 
-Each section contribution includes:
+1. Set up the checkout with `pnpm setup`, install `ffmpeg`, and run
+   `pnpm exec playwright-core install chromium`.
+2. Run the chapter-building prompt. The agent completes each section and its
+   checks, then records the results in `reports/`.
+3. Refresh the chapter checklist and run the project checks:
 
-- `src/content/sections/NN-NN.ts`, with verbatim source couplets and a score.
-- Optimized paintings in `public/art/NN-NN/`, prompts, a manifest and any new
-  recurring-character sheets. Existing painting filenames are immutable.
-- `reports/NN-NN.md`, recording the checker output, redos and known problems.
-- A batch report for several sections, with the exact completed range and
-  unfinished sections. Update the README checklist to match the delivered work.
+   ```sh
+   node scripts/update_readme_contents.mjs
+   pnpm check:chapters
+   pnpm build
+   ```
 
-Do not commit original generated PNGs, `work/`, credentials or build output.
+4. Open a PR listing the chapters and sections added, their reports, and any
+   remaining problems. CI runs the checks before merging.
 
-## Quality gates
+The full section check, `pnpm check <id>`, covers source text, paintings,
+desktop and phone renders, and audio levels. The [builder brief](docs/BUILDER_BRIEF.md)
+contains the detailed criteria. Keep the optimized AVIF paintings, prompts,
+manifests and reports; leave original PNGs and temporary output out of Git.
+Existing paintings keep their filenames; replacements get new names.
 
-Run `pnpm setup`, install Chromium with `pnpm exec playwright-core install chromium`,
-and install `ffmpeg`. Then run the full checker for every added or changed section:
+For a large run, mention your planned chapter range in an issue or draft PR
+so contributors do not duplicate work across forks.
 
-```sh
-pnpm check 08.01
-pnpm typecheck
-pnpm build
-pnpm audit
-```
+## Other changes
 
-The section check verifies verbatim text and ordered couplet coverage, scene
-structure and scores, required prompts/manifests/reports, AVIF decoding and
-1536×1024 dimensions, browser errors, desktop and phone renders, and full-score
-audio. Peak must stay below −1 dBFS and integrated loudness within −26 to
-−20 LUFS. Painting count and size warnings still need review.
+UI, accessibility, sound and engine improvements are welcome. Describe the
+result and how you checked it in your PR.
 
-Open both contact sheets and listen to the score. Automated checks cannot
-judge miniature style, character continuity, historical details, religious
-constraints, the focal light, musical fit or whether a poem obscures an
-important figure. Check [art/STYLE.md](art/STYLE.md), [DESIGN.md](DESIGN.md) and
-[sound/SOUND.md](sound/SOUND.md). Test slow scrolling and reversal through
-portals, buttons and arrow keys, phone layouts and reduced motion for UI changes.
-
-Use the PR template to say **passed**, **failed** or **not checked**. Name every
-warning and exception. Do not mark a section complete because its files exist.
-
-## What CI does
-
-Pull requests and pushes to `main` or `develop` run a frozen install, dependency
-audit, typecheck, build and section checks. Changed section assets, prompts,
-manifests and reports select their section checks. Shared reader, style and
-sound changes sample all built sections; other changes smoke-test 01.01.
-New or changed sections always receive the full check. Contact sheets and
-checker results are attached to the run for review.
-
-CI rejects changes or deletions of existing paintings. A replacement must use
-a new filename. CI never generates images or deploys a PR.
-
-## Changes to infrastructure
-
-Cloudflare credentials are unavailable to PR checks, forks and `develop`.
-Production deployment uses a separate GitHub-hosted job and only the build
-from the same owner-pushed `main` run. Workflow, dependency, configuration and
-build-script changes need especially careful owner review before merging.
-Once merged to `main`, code is trusted for publication. Never merge code that
-prints secrets or sends them elsewhere. See [DEPLOY.md](DEPLOY.md).
+PRs need no Cloudflare credentials. Only pushes to `main` deploy; forks,
+PR checks and `develop` have no access to production secrets. See
+[DEPLOY.md](DEPLOY.md) for deployment details.

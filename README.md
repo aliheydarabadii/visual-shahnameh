@@ -2,7 +2,7 @@
   <img src="public/favicon.svg" alt="Visual Shahnameh emblem" width="88" height="88">
 </p>
 
-<h1 align="center">شاهنامه‌ی دیدنی<br>Visual Shahnameh</h1>
+<h1 align="center">شاهنامه به روایت تصویر<br>Visual Shahnameh</h1>
 
 <p align="center"><strong>A living, illuminated edition of the world's great Persian epic, one couplet at a time.</strong></p>
 <p align="center"><a href="https://shahnameh.world">Read the Shahnameh · شاهنامه بخوانید</a> · <a href="#contribute">Contribute</a> · <a href="CONTRIBUTING.md">Contributor guide</a></p>
@@ -82,65 +82,34 @@ pnpm build              # typecheck and production build
 ## Contribute
 
 Fork the repository, create a branch, and open a pull request to `main`.
-Farzin reviews and merges contributions. You do not need Cloudflare access.
 
-Image generation requires **your own Codex account and Codex app**. Generate
-the illustrations there, then add the reviewed files to your checkout. Visual
-Shahnameh does not generate images or provide access to anyone's accounts.
+> **Codex is required to contribute chapters.** Install the Codex app and sign
+> in with your own account for image generation. If you do not have Codex,
+> do not use the chapter-building prompt below.
 
-You can copy this prompt into your Codex app. Replace **X** with any positive
-whole number of chapters. A chapter can contain many sections, so a large X
-can mean a substantial amount of artwork and music.
+Use this prompt with your coding agent, whether Codex, Claude or Grok.
+Codex handles image generation. Replace **X** with the number of chapters
+you want to add.
 
 ```text
-Build the next X chapters of Visual Shahnameh in this checkout.
-Read AGENTS.md (Orchestrator) and docs/BUILDER_BRIEF.md first and follow them.
-Use pnpm status and scripts/next_sections.mjs --chapters X to find the next
-unbuilt chapters. Plan and claim every section before starting builders.
-Keep consecutive story sections together. Generate all illustrations in my own
-Codex app using my own Codex account. Visual Shahnameh is a reader, not an
-image-generation service.
-Ask before launching other agents unless I have already authorized them.
-Generate and personally review the paintings, preserve the source text exactly,
-compose the scores, and run the full section checks. Inspect both desktop and
-phone contact sheets. Write each section report and a batch report, stating
-anything that failed or was not verified. Release unfinished claims.
-Do not overwrite existing paintings, change shared engine code, deploy, or
-commit. Stop with a reviewable result and a list of the sections completed.
+Build the next X chapters of Visual Shahnameh.
+Follow AGENTS.md and docs/BUILDER_BRIEF.md.
+Use Codex for image generation, then complete the section checks and reports.
 ```
 
-The prompt starts the process; a finished contribution still needs human
-judgment about the images, Persian text, transitions and sound. The
-[contributor guide](CONTRIBUTING.md) explains the quality gates and the
-[pull-request template](.github/pull_request_template.md) records what was
-actually verified. UI, accessibility and engine fixes are welcome too.
+See the [contributor guide](CONTRIBUTING.md) for setup and submitting your PR.
+UI, accessibility and engine fixes are welcome too.
 
 ## Chapter checklist
 
 As of 2026-11-06, chapters 01–07 are complete through **07.18, درگذشتن فریدون**.
 The app includes **40 of 646 sections** and **1,941 couplets**, with paintings
-and generative music. The source extraction
-contains 49,615 verse rows, including ten with a missing hemistich.
+and generative music.
 Next: **08.01, پادشاهی منوچهر**. Unchecked chapters remain to be illustrated and scored.
 
-The source heading 07.13 has no couplets; it is included as a title-only section.
-
-Open a chapter below to see every subsection. Checked items have a section file
-with paintings and a score; links open their implementation. The text for all
-646 sections is available in [Markdown](text/shahnameh.md),
+Open any of the 61 chapters below to see its subsections.[^chapters]
+Checked items are complete. The full text is available in [Markdown](text/shahnameh.md),
 [JSON](text/shahnameh.json), and the [original PDF](text/shahnameh-ferdowsi.pdf).
-
-The text and reader now use **61 chapters**, following Ganjoor's top-level
-contents. The [chapter map](text/chapter-map.json) records how the original
-50 PDF groups were reorganized. Section IDs remain permanent: `09.01`, for
-example, belongs to chapter `08`, منوچهر. Every section and verse remains in
-its original order. See the [migration report](reports/chapter-migration-2026-11-06.md)
-and [source investigation](reports/chapter-structure-2026-11-06.md) for the
-mapping and the text issues that remain to be reviewed.
-
-To regenerate this inventory after completing sections, run
-`node scripts/update_readme_contents.mjs`. `pnpm check:chapters` checks the
-source, reader contents and inventory against the chapter map.
 
 <!-- chapter-checklist:start -->
 <details>
@@ -216,7 +185,7 @@ source, reader contents and inventory against the chapter map.
 - [x] [07.10 · کشتن برادران، ایرج را](src/content/sections/07-10.ts)
 - [x] [07.11 · آوردن تابوت ایرج به نزد فریدون](src/content/sections/07-11.ts)
 - [x] [07.12 · زادن منوچهر از مادر](src/content/sections/07-12.ts)
-- [x] [07.13 · آگاه شدن سلم و تور از پادشاهی منوچهر فرستادن پیام به نزد](src/content/sections/07-13.ts) (heading only, no couplets)
+- [x] [07.13 · آگاه شدن سلم و تور از پادشاهی منوچهر فرستادن پیام به نزد](src/content/sections/07-13.ts)
 - [x] [07.14 · فریدون](src/content/sections/07-14.ts)
 - [x] [07.15 · آهنگ رزم منوچهر با سلو و تور](src/content/sections/07-15.ts)
 - [x] [07.16 · نبرد منوچهر با سلم و تور](src/content/sections/07-16.ts)
@@ -318,19 +287,19 @@ source, reader contents and inventory against the chapter map.
 - [ ] 15.03 · لشکر کشیدن کیکاووس به مازندران
 - [ ] 15.04 · پیام کاووس به نزد زال
 - [ ] 16.01 · هفت خوان رستم
-- [ ] 16.02 · خوان نخست (heading only, no couplets)
+- [ ] 16.02 · خوان نخست
 - [ ] 16.03 · کشتن رخش، شیر را
-- [ ] 16.04 · خوان دویم (heading only, no couplets)
+- [ ] 16.04 · خوان دویم
 - [ ] 16.05 · گذر از بیابان خشک
-- [ ] 16.06 · خوان سیوم (heading only, no couplets)
+- [ ] 16.06 · خوان سیوم
 - [ ] 16.07 · رزمرستم با اژدها
-- [ ] 16.08 · خوان چهارم (heading only, no couplets)
+- [ ] 16.08 · خوان چهارم
 - [ ] 16.09 · زن جادو
-- [ ] 16.10 · خوان پنجم (heading only, no couplets)
+- [ ] 16.10 · خوان پنجم
 - [ ] 16.11 · گرفتار شدن اولاد بر دست رستم
-- [ ] 16.12 · خوان ششم (heading only, no couplets)
+- [ ] 16.12 · خوان ششم
 - [ ] 16.13 · رسیدن رستم به نزد کاووس و ایرانیان
-- [ ] 16.14 · خوان هفتم (heading only, no couplets)
+- [ ] 16.14 · خوان هفتم
 - [ ] 16.15 · رزم رستم با دیو سپید
 - [ ] 16.16 · نامه کیکاووس به شاه مازندران
 - [ ] 16.17 · رفتن رستم به نزد شاه مازندران
@@ -514,7 +483,7 @@ source, reader contents and inventory against the chapter map.
 - [ ] 21.04 · رای زدن پیران با هومان و خاقان
 - [ ] 21.05 · سخن گفتن رستم با لشکر خویش
 - [ ] 21.06 · لشکر آراستن ایرانیان و تورانیان
-- [ ] 21.07 · نبرد رستم با ساوه شاه و و گهارگهانی و کشته شدن هر دو بر دست (heading only, no couplets)
+- [ ] 21.07 · نبرد رستم با ساوه شاه و و گهارگهانی و کشته شدن هر دو بر دست
 - [ ] 21.08 · رستم
 - [ ] 21.09 · نامه رستم زال به کیخسرو
 - [ ] 21.10 · آگاهی سافتن افراسیاب از کار لشکر
@@ -592,7 +561,7 @@ source, reader contents and inventory against the chapter map.
 
 - [ ] 25.01 · گفتار اندر ستایش سلطان محمود
 - [ ] 25.02 · لشکر آراستن کیخسرو بجنگ افراسیاب
-- [ ] 25.03 · آگاهی یافتن افراسیاب از کشته شدن پیران و لشکر آراستن (heading only, no couplets)
+- [ ] 25.03 · آگاهی یافتن افراسیاب از کشته شدن پیران و لشکر آراستن
 - [ ] 25.04 · کیخسرو
 - [ ] 25.05 · آگاهی یافتن کیخسرو از آمدو افراسیاب و لشکر
 - [ ] 25.06 · سخن گفتن پشنگ با افراسیاب
@@ -644,7 +613,7 @@ source, reader contents and inventory against the chapter map.
 - [ ] 27.04 · نپذیرفتن گشتاسپ باژ ایران ارجاسب را
 - [ ] 27.05 · لشکر کشیدن ارجاسب بجنگ گشتاسپ
 - [ ] 27.06 · رزم ارجاسب با گشتاسپ
-- [ ] 27.07 · کشته شدن اردشیر و شیرو و شیدسپ و گرامی و نیوزار سرداران (heading only, no couplets)
+- [ ] 27.07 · کشته شدن اردشیر و شیرو و شیدسپ و گرامی و نیوزار سرداران
 - [ ] 27.08 · ایران
 - [ ] 27.09 · آگاهی یافتن اسفندیار از کشته شدن زریر
 - [ ] 27.10 · اندر بازگشت گشتاسپ به ایرانزمین
@@ -729,7 +698,7 @@ source, reader contents and inventory against the chapter map.
 <details>
 <summary>○ 31 · پادشاهی همای چهرزاد سی و دو سال بود (0/7 sections)</summary>
 
-- [ ] 31.05 · پادشاهی همای چهر آزاد (heading only, no couplets)
+- [ ] 31.05 · پادشاهی همای چهر آزاد
 - [ ] 31.06 · گذاشتن همای پسر خود داراب را در صندوقی بدریای فرات
 - [ ] 31.07 · یافتن گازر صندوق و پروردنش داراب را
 - [ ] 31.08 · پرسیدن داراب نژاد خود از گازر و جنگ آوردن بارومیان
@@ -742,7 +711,7 @@ source, reader contents and inventory against the chapter map.
 <details>
 <summary>○ 32 · پادشاهی داراب دوازده سال بود (0/6 sections)</summary>
 
-- [ ] 31.12 · پادشاهی داراب (heading only, no couplets)
+- [ ] 31.12 · پادشاهی داراب
 - [ ] 31.13 · پادشاهی داراب
 - [ ] 31.14 · ساختن داراب شهر داراب کرد را
 - [ ] 31.15 · رزم داراب با شعیب تازی
@@ -754,7 +723,7 @@ source, reader contents and inventory against the chapter map.
 <details>
 <summary>○ 33 · پادشاهی دارای داراب چهارده سال بود (0/9 sections)</summary>
 
-- [ ] 31.18 · پادشاهی دارای داراب (heading only, no couplets)
+- [ ] 31.18 · پادشاهی دارای داراب
 - [ ] 31.19 · پادشاهی دارا پسر داراب
 - [ ] 31.20 · یورش اسکندر به ایران
 - [ ] 31.21 · رزم نخست اسکندر با دارا
@@ -773,7 +742,7 @@ source, reader contents and inventory against the chapter map.
 - [ ] 32.02 · نامه نبشتن اسکندر بزن و دختر دارا
 - [ ] 32.03 · پاسخ نامه اسکندر از مادر روشنک
 - [ ] 32.04 · لشکر کشیدن اسکندر سوی کید و نامه نوشتن بدو
-- [ ] 32.05 · کشته شدن فور بدست اسکندر و نشانیدن اسکندر سورگ را بتخت (heading only, no couplets)
+- [ ] 32.05 · کشته شدن فور بدست اسکندر و نشانیدن اسکندر سورگ را بتخت
 - [ ] 32.06 · او
 - [ ] 32.07 · لشکر کشیدن اسکندر از جده بسوی مصر
 - [ ] 32.08 · پند دادن قیدافه اسکندر را
@@ -1066,7 +1035,7 @@ source, reader contents and inventory against the chapter map.
 - [ ] 44.33 · برانگیختن خسرو گردوی گردیه را بکشتن شویش گستهم
 - [ ] 44.34 · رفتن گردیه بنزد خسرو و بزنی خواستن خسرو وی را
 - [ ] 44.35 · هنر نمودن گردیه پیش خسرو
-- [ ] 44.36 · فرستادن خسرو مرزبان بد سرشت را به ری و تنگ کردن او زندگی را (heading only, no couplets)
+- [ ] 44.36 · فرستادن خسرو مرزبان بد سرشت را به ری و تنگ کردن او زندگی را
 - [ ] 44.37 · بر مردمان
 - [ ] 44.38 · بازی ساختن گردیه و بخشیدن خسرو مردمان ری را
 - [ ] 44.39 · بخش کردن خسرو سپاهیان را بر چهار سوی کشور
@@ -1139,7 +1108,7 @@ source, reader contents and inventory against the chapter map.
 <summary>○ 61 · پادشاهی یزدگرد (0/14 sections)</summary>
 
 - [ ] 50.01 · پادشاهی یزدگرد
-- [ ] 50.02 · تاخت کردن سعد وقاص بایران و فرستادن یزدگرد رستم فرخزاد را (heading only, no couplets)
+- [ ] 50.02 · تاخت کردن سعد وقاص بایران و فرستادن یزدگرد رستم فرخزاد را
 - [ ] 50.03 · بجنگ او
 - [ ] 50.04 · *
 - [ ] 50.05 · نامه رستم فرخزاد به سعد ابی وقاص
@@ -1149,7 +1118,7 @@ source, reader contents and inventory against the chapter map.
 - [ ] 50.09 · بر انگیختن ماهوی سوری بیژن را بجنگ یزدگرد
 - [ ] 50.10 · شکست یزدگرد و گریختن او اندر آسیا
 - [ ] 50.11 · بر تخت نشستن ماهوی سوری
-- [ ] 50.12 · آگاه شدن بیژن از کشته شدن یزدگرد و لشکر کشیدن او بجنگ (heading only, no couplets)
+- [ ] 50.12 · آگاه شدن بیژن از کشته شدن یزدگرد و لشکر کشیدن او بجنگ
 - [ ] 50.13 · ماهوی سوری
 - [ ] 50.14 · گرفتار شدن ماهوی سوری و کشته شدنش بفرمان بیژن
 
@@ -1164,8 +1133,8 @@ production credentials. An owner push or merge to `main` checks and builds the
 site, then deploys that exact build in a separate job. `develop`, if used,
 runs checks only. See [DEPLOY.md](DEPLOY.md) for the token and environment setup.
 
-Only **@farzinnasiri** may update `main` or `develop`. Contributors submit PRs;
-production credentials belong only in the restricted `production` environment,
+Only maintainers may update `main` or `develop`. Production credentials
+belong only in the restricted `production` environment,
 never in source, prompts, reports or browser-facing `VITE_` variables.
 
 See [SECURITY.md](SECURITY.md) for reporting a vulnerability.
@@ -1191,3 +1160,5 @@ See [text provenance and extraction limitations](text/README.md).
 Illustrations are generated for this project; documentation previews are
 smaller JPEG copies of the shipped AVIF paintings. Original generated PNGs,
 local credentials and generated check output are excluded from Git.
+
+[^chapters]: The source PDF's 50 top-level groups have been organized into the 61-chapter structure used by [Ganjoor](https://ganjoor.net/ferdousi/shahname). The text is unchanged.

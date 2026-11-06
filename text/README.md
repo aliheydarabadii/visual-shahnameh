@@ -30,6 +30,13 @@ and [completed migration](../reports/chapter-migration-2026-11-06.md).
 
 The first sub-chapter, آغاز کتاب → آغاز کتاب, is section `01.01` (15 couplets).
 
+Sections `07.13` and `07.14` expose an extraction bug. On physical PDF page
+106, one heading wraps onto a second line ending in «فریدون». The extractor
+mistook the two lines for separate section headings, creating an empty
+`07.13` and placing all 128 couplets under `07.14`, titled only «فریدون».
+This is not an intentional empty section in the book. Correcting these
+section boundaries and their reader links remains a separate source correction.
+
 ## How it was made
 
 ```sh

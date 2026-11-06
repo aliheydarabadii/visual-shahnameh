@@ -12,7 +12,7 @@ const blocks = book.chapters.map((chapter) => {
     const done = built(section.id);
     const title = `${section.id} · ${section.title}`;
     const link = `src/content/sections/${section.id.replace(".", "-")}.ts`;
-    return `- [${done ? "x" : " "}] ${done ? `[${title}](${link})` : title}${section.couplets.length ? "" : " (heading only, no couplets)"}`;
+    return `- [${done ? "x" : " "}] ${done ? `[${title}](${link})` : title}`;
   });
   return `<details>\n<summary>${count === chapter.sections.length ? "✓" : "○"} ${chapter.id} · ${chapter.title} (${count}/${chapter.sections.length} sections)</summary>\n\n${lines.join("\n")}\n\n</details>`;
 });
