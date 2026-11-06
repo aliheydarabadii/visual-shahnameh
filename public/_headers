@@ -9,6 +9,10 @@
 /art/*
   Cache-Control: public, max-age=31536000, immutable
 
+# Versioned images used by Telegram, X and other social previews.
+/social/*
+  Cache-Control: public, max-age=31536000, immutable
+
 # The page itself must always revalidate so new sections appear.
 /
   Cache-Control: public, max-age=0, must-revalidate
