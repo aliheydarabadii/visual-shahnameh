@@ -35,8 +35,9 @@ contains the detailed criteria. Keep the optimized AVIF paintings, prompts,
 manifests and reports; leave original PNGs and temporary output out of Git.
 Existing paintings keep their filenames; replacements get new names.
 
-For a large run, mention your planned chapter range in an issue or draft PR
-so contributors do not duplicate work across forks.
+Before starting sections, follow the [shared-claim workflow](README.md#reserve-work-before-starting).
+Open a claim issue in the upstream repository so contributors across forks
+can see which sections are reserved.
 
 ## Other changes
 

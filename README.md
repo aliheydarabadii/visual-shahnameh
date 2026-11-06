@@ -94,11 +94,36 @@ you want to add.
 ```text
 Build the next X chapters of Visual Shahnameh.
 Follow AGENTS.md and docs/BUILDER_BRIEF.md.
+Follow the README's shared-claim workflow before starting any sections.
 Use Codex for image generation, then complete the section checks and reports.
 ```
 
 See the [contributor guide](CONTRIBUTING.md) for setup and submitting your PR.
 UI, accessibility and engine fixes are welcome too.
+
+### Reserve work before starting
+
+[GitHub Issues](https://github.com/farzinnasiri/visual-shahnameh/issues) is the
+shared reservation list across contributors and forks. Agents must follow
+these steps before generating paintings:
+
+1. Update from the upstream `main` branch and check open claim issues. Choose
+   a small, contiguous range of unfinished sections with no active claim.
+   Use the permanent section IDs from `text/shahnameh.json`.
+2. Open an issue titled `[Claim] 09.01–09.05`, replacing the example with your
+   range. List the exact section IDs in the body. The issue author owns the
+   claim; assignment or maintainer approval is not required.
+3. Recheck open claims before starting. The earliest open issue takes priority
+   if ranges overlap. Close your conflicting claim and choose another range.
+4. Link the finished PR to the claim with `Closes #<issue-number>`. Keep the
+   issue open while working, post progress if work takes longer, and close it
+   to release the range if you stop. A merged PR closes the linked claim.
+
+Large chapters can be split between several non-overlapping claims. Check
+claims in the upstream repository, not just your fork. `pnpm status` and
+`scripts/next_sections.mjs` currently read local files and local claims only;
+they do **not** fetch GitHub reservations. Agents must check Issues separately.
+The `work/claims/` locks still coordinate agents sharing one checkout.
 
 ## Chapter checklist
 

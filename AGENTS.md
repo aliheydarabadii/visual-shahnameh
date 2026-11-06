@@ -47,6 +47,11 @@ Also needed: Playwright's Chromium (`pnpm exec playwright-core install chromium`
 
 ## Orchestrator: "build the next N …"
 
+Before selecting work, follow the [shared-claim workflow](README.md#reserve-work-before-starting).
+GitHub Issues coordinate contributors across forks. The script below reads
+only local claims; check upstream claim issues separately and reserve the
+chosen section ranges there before generating paintings.
+
 1. **Read the request.** "Chapters" usually means the book's chapters
    (داستان), each of which may have many sections; "sections" or
    "sub-chapters" means sections. If it only gives a number of agents,
