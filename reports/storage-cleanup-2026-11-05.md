@@ -40,8 +40,8 @@ All 40 section modules still resolve. 459 `art(...)` paintings and the shared li
 
 | Folder | Files | Bytes | Role |
 | --- | ---: | ---: | --- |
-| `07-13-kia-late` | 1 | 3,590,514 | source of the shipped painting |
-| `07-14-kia-late` | 18 | 65,942,659 | 16 shipped sources; `08-sajdeh.png` and `17-pil.png` superseded |
+| `07-13-late` | 1 | 3,590,514 | source of the shipped painting |
+| `07-14-late` | 18 | 65,942,659 | 16 shipped sources; `08-sajdeh.png` and `17-pil.png` superseded |
 | `07-14-unused` | 5 | 20,086,181 | earlier rejects (`08-sajdeh`, `08-sajdeh-2`, `17-pil`, `21-shir`, `22-kineh`) |
 | `07-15-unused` | 2 | 8,214,185 | earlier rejects (`06-narvan`, `07-arus`); shipped names are the `-2` stems |
 | `07-16-sources` | 21 | 75,460,492 | 16 shipped sources; five unsuffixed stems superseded by `-2` |

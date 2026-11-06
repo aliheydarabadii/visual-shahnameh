@@ -35,4 +35,4 @@ The trial exposed a horizontal line through title cards. A scene without verses 
 
 ## Owner decision and lettering correction
 
-Farzin rejected both downloaded faces and chose the existing Noto font. The application remains on Noto Nastaliq Urdu. The unused IranNastaliq fallback was removed to make that choice explicit. The UI pass had also added a dark text stroke and text shadow to poem letters. Both were removed after Farzin reported the changed appearance. The browser on port 5173 now reports Noto Nastaliq Urdu, weight 400, a zero-width stroke, no shadow, no trial stylesheet, and no downloaded font faces. Typechecking passes.
+the owner rejected both downloaded faces and chose the existing Noto font. The application remains on Noto Nastaliq Urdu. The unused IranNastaliq fallback was removed to make that choice explicit. The UI pass had also added a dark text stroke and text shadow to poem letters. Both were removed after the owner reported the changed appearance. The browser on port 5173 now reports Noto Nastaliq Urdu, weight 400, a zero-width stroke, no shadow, no trial stylesheet, and no downloaded font faces. Typechecking passes.

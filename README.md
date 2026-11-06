@@ -84,7 +84,11 @@ pnpm build              # typecheck and production build
 Fork the repository, create a branch, and open a pull request to `main`.
 Farzin reviews and merges contributions. You do not need Cloudflare access.
 
-You can copy this prompt into a coding agent. Replace **X** with any positive
+Image generation requires **your own Codex account and Codex app**. Generate
+the illustrations there, then add the reviewed files to your checkout. Visual
+Shahnameh does not generate images or provide access to anyone's accounts.
+
+You can copy this prompt into your Codex app. Replace **X** with any positive
 whole number of chapters. A chapter can contain many sections, so a large X
 can mean a substantial amount of artwork and music.
 
@@ -93,8 +97,9 @@ Build the next X chapters of Visual Shahnameh in this checkout.
 Read AGENTS.md (Orchestrator) and docs/BUILDER_BRIEF.md first and follow them.
 Use pnpm status and scripts/next_sections.mjs --chapters X to find the next
 unbuilt chapters. Plan and claim every section before starting builders.
-Keep consecutive story sections together. Use the image-generation accounts
-available in this environment; do not assume the owner's accounts are available.
+Keep consecutive story sections together. Generate all illustrations in my own
+Codex app using my own Codex account. Visual Shahnameh is a reader, not an
+image-generation service.
 Ask before launching other agents unless I have already authorized them.
 Generate and personally review the paintings, preserve the source text exactly,
 compose the scores, and run the full section checks. Inspect both desktop and

@@ -58,12 +58,12 @@ Also needed: Playwright's Chromium (`pnpm exec playwright-core install chromium`
    later run can't take it:
    `node scripts/next_sections.mjs --claim <id> --by <agent-name>` (exit 1 if
    it is taken or built: drop it from the plan).
-4. **Assign image accounts.** Spread builders evenly over the image accounts
-   (table below), at most about 3 builders per account at once; if there are
-   more builders, start them in waves.
+4. **Arrange image generation in Codex.** Contributors must use their own
+   Codex account and Codex app. Plan batches around their generation limits;
+   wait or reduce concurrency when needed. Never publish local account labels.
 5. **Launch one builder per bundle** with `docs/BUILDER_BRIEF.md`: fill in the
-   section list and image account, and pass the whole brief. Builders work
-   in this same folder; they do not need branches or worktrees.
+   section list and contributor-provided Codex setup, and pass the whole brief.
+   Builders work in this same folder; they do not need branches or worktrees.
 6. **When they finish,** run
    `node scripts/check_section.mjs <every id>` and look at each
    `work/checks/<id>/sheet-desktop.jpg`. Write `reports/batch-<date>.md`:
@@ -73,21 +73,16 @@ Also needed: Playwright's Chromium (`pnpm exec playwright-core install chromium`
 7. **Do not commit or deploy** unless the owner asks. Uploading art to R2 is
    part of deploying (`DEPLOY.md`).
 
-### Image accounts
+### Image generation
 
-Image generation is done by agents with an image tool. In T3 Code these are
-Codex accounts, started with `delegate_task` and target
-`{"providerInstanceId": "<id>"}`:
+All painting generation uses the contributor's own **Codex account and Codex
+app**. Visual Shahnameh itself does not generate images, broker accounts or
+provide credentials. Never assume access to another person's account.
 
-| Account | Id |
-| --- | --- |
-| Farzin | `codex` |
-| Zahra | `codex_zahra` |
-| Erfan | `codex_erfan` |
-| Kia | `codex_kia` |
-
-In another harness, use whatever image tool it offers; the brief only needs
-"1536×1024 PNGs written to `art/incoming/<id>/`".
+Give Codex the prompts and paths and ask for 1536×1024 PNGs in
+`art/incoming/<id>/`. If the contributor explicitly authorizes delegation to
+their configured Codex agent, use only the identifier they supply locally.
+Keep personal account mappings, limits and internal task links out of Git.
 
 ## Builder: build a section
 

@@ -1,18 +1,17 @@
 # Builder brief
 
-The orchestrator fills in the two blanks and passes this whole file to each
+The orchestrator fills in the section list and passes this whole file to each
 builder. A builder can also be started by hand with it.
 
 ---
 
 You are building sections of the **Visual Shahnameh** in
-`/Users/farzin/MyProjects/visual-shahnameh` (if the repo is elsewhere, use
-its root). It is a browser-only Persian site: scrolling moves the camera into
-paintings while couplets appear in gold nastaliq, over a generative score.
+the current checkout. It is a browser-only Persian site: scrolling moves the
+camera into paintings while couplets appear in gold nastaliq, over a generative score.
 Other agents are building other sections in the same folder at the same time.
 
 **Your sections:** {{SECTIONS}}  (ids like `03.01`; file slugs like `03-01`)
-**Your image account:** {{IMAGE_ACCOUNT}}
+**Image generation:** your own Codex account, in your Codex app.
 
 ## Read first
 
@@ -42,14 +41,13 @@ section end to end: `src/content/sections/02-01.ts` with
    unchanged into each prompt.
 5. **Write `art/prompts/<slug>.md`:** the arc, then one entry per painting
    (file name, couplets, the full prompt from the STYLE template).
-6. **Generate the paintings** with your image account: 1536×1024 PNGs into
-   `art/incoming/<slug>/`, named as in your prompts file. Record the final
-   prompt of each in `art/manifest-<slug>.json` (same shape as the others).
-   In T3 Code: `delegate_task` with target
-   `{"providerInstanceId": "{{IMAGE_ACCOUNT}}"}`; give it the prompts and
-   paths, ask it to report the files it wrote. Ask for several paintings per
-   image task rather than one at a time. If you are rate-limited, wait and
-   retry; don't switch accounts.
+6. **Generate the paintings in your own Codex app**, using your own Codex
+   account: 1536×1024 PNGs into `art/incoming/<slug>/`, named as in your
+   prompts file. Record the final prompt of each in `art/manifest-<slug>.json`
+   (same shape as the others). Visual Shahnameh has no image-generation
+   feature and provides no accounts. Give Codex the prompts and output paths;
+   ask it to report every file written. If generation is rate-limited, wait
+   and retry with your own Codex setup. Keep account identifiers private.
 7. **Review every image yourself** against `art/STYLE.md`: no text or
    letters, no frame, one luminous focal point near the centre, key content
    in the central 45%, miniature style at night, characters matching their
@@ -84,7 +82,7 @@ of its report. Keep it short: the reports hold the detail.
 ```md
 # <id> <title>
 
-Builder: <name/model> · Image account: <account> · Started <time> · Finished <time>
+Builder: <model/tool> · Images: Codex · Started <time> · Finished <time>
 
 ## Scenes
 | # | Painting | Couplets | Shows | Sound |

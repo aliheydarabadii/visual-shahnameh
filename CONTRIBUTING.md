@@ -11,8 +11,10 @@ your coding agent and replace X with any positive integer. Read [AGENTS.md](AGEN
 and the full [builder brief](docs/BUILDER_BRIEF.md). Chapter sizes vary greatly;
 plan by couplet count and keep consecutive story sections together.
 
-Use your own image-generation account. The account names in the guide are
-the owner's local setup, not shared credentials. Coordinate your proposed
+**Generate all illustrations in your own Codex app, using your own Codex
+account.** A Codex account is required for image-generation contributions.
+Visual Shahnameh is the reading experience, not an image generator or an
+account-sharing service. Coordinate your proposed
 chapter range in an issue or draft PR before a large run. Claims in `work/`
 coordinate agents in one checkout; they do not reserve sections across forks.
 
