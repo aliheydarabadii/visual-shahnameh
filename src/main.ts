@@ -40,15 +40,23 @@ function decodePainting(url: string) {
  */
 async function route() {
   const version = ++routeVersion;
-  const path = location.hash.replace(/^#\/?/, "");
+  let path = location.hash.replace(/^#\/?/, "");
   app.setAttribute("aria-busy", "true");
-  const load = sections[path];
+  // JSON inference widens section tuples; check:chapters validates this shape.
+  const data = (await import("./content/toc.json")).default as unknown as Toc;
+  if (version !== routeVersion) return;
+  const canonical = Object.hasOwn(data.sectionAliases, path) ? data.sectionAliases[path] : undefined;
+  if (canonical) {
+    path = canonical;
+    history.replaceState(history.state, "", `#/${path}`);
+  }
+  const load = Object.hasOwn(sections, path) ? sections[path] : undefined;
   if (load) {
-    const [section, toc] = await Promise.all([load(), import("./content/toc.json")]);
+    const section = await load();
     await Promise.all([fonts, ...section.scenes.slice(0, 2).map((scene) => decodePainting(scene.image))]);
     if (version !== routeVersion) return;
     swap(() => {
-      const journey = new Journey(app, section, nextSection(toc.default as Toc, section.id));
+      const journey = new Journey(app, section, nextSection(data, section.id));
       // Review aid: "?beat=4.2" freezes the camera at that point (see DESIGN.md).
       const beat = new URLSearchParams(location.search).get("beat");
       if (beat !== null) journey.freezeAt(Number(beat));
@@ -66,8 +74,7 @@ async function route() {
     return;
   }
 
-  const [{ Home }, { Contents }, toc] = await Promise.all([import("./home/home"), import("./home/contents"), import("./content/toc.json")]);
-  const data = toc.default as Toc;
+  const [{ Home }, { Contents }] = await Promise.all([import("./home/home"), import("./home/contents")]);
   const available = new Set(Object.keys(sections));
   await fonts;
   if (version !== routeVersion) return;

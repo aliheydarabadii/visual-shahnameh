@@ -40,7 +40,7 @@ const sourceChapters = Object.fromEntries(book.chapters.flatMap(c => c.sections.
 const tsc = spawnSync(join(root, "node_modules/.bin/tsc"), ["--noEmit", "-p", root], { encoding: "utf8" });
 const tscErrors = (tsc.stdout || "").split("\n").filter((l) => /error TS/.test(l));
 
-const server = await createServer({ root, logLevel: "error", server: { port: 5300 + Math.floor(Math.random() * 600), strictPort: false } });
+const server = await createServer({ root, logLevel: "error", server: { port: 5300 + Math.floor(Math.random() * 600), strictPort: false, watch: null, hmr: false } });
 await server.listen();
 const base = server.resolvedUrls.local[0].replace(/\/$/, "");
 const cache = `${homedir()}/Library/Caches/ms-playwright`;
@@ -212,6 +212,9 @@ async function check(id) {
   info.screenshots = `${shots.desktop.length + shots.phone.length} → work/checks/${id}/sheet-desktop.jpg, sheet-phone.jpg`;
 
   // ---- sound
+  // Screenshots are complete. Release the live canvas before the long offline
+  // render so it does not keep competing for CPU/GPU throughout the score.
+  await page.evaluate(() => window.__journey?.destroy());
   const wav = await page.evaluate(async (id) => {
     const { sections } = await import("/src/content/index.ts");
     const { Sound } = await import("/src/engine/sound.ts");

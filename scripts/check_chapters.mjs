@@ -10,12 +10,16 @@ const mapping = JSON.parse(read("text/chapter-map.json"));
 const toc = JSON.parse(read("src/content/toc.json"));
 const sections = book.chapters.flatMap(c => c.sections);
 const ids = sections.map(s => s.id);
+assert.equal(sections.find(s => s.id === "07.14")?.title,
+  "آگاه شدن سلم و تور از پادشاهی منوچهر فرستادن پیام به نزد فریدون",
+  "The two-line heading on PDF page 106 must be one section title");
+assert(!ids.includes("07.13"), "The first heading line must not create an empty section");
 assert.equal(new Set(ids).size, ids.length, "Section IDs must be unique");
 assert.equal(book.chapters.length, 61, "Expected the 61-chapter organization");
 assert.equal(mapping.chapters.length, 61);
 
-// This checksum was recorded from the complete source before regrouping.
-// It includes every original section ID, title, PDF page and paired verse.
+// Reviewed source checksum, including the joined heading correction.
+// It includes each canonical section ID, title, PDF page and paired verse.
 const payload = sections.map(s => [s.id, s.title, s.pdfPage, s.couplets]);
 const digest = createHash("sha256").update(JSON.stringify(payload)).digest("hex");
 assert.equal(digest, mapping.sectionContentSha256, "Source sections changed or moved out of order");
@@ -32,6 +36,14 @@ assert.deepEqual(toc.chapters, book.chapters.map(c => ({
   id: c.id, title: c.title, era: c.era,
   sections: c.sections.map(s => [s.id, s.title, s.couplets.length]),
 })), "Reader contents are out of date");
+const aliases = Object.fromEntries(mapping.joinedHeadings.map(join => [join.heading, join.section]));
+assert.deepEqual(book.sectionAliases, aliases, "Source redirects differ from the reviewed heading joins");
+assert.deepEqual(toc.sectionAliases, aliases, "Reader redirects are out of date");
+for (const [retired, canonical] of Object.entries(aliases)) {
+  assert(!ids.includes(retired), "Retired heading IDs must not appear as sections");
+  assert(ids.includes(canonical), "Aliases must point directly to canonical sections");
+  assert(!existsSync(new URL(`src/content/sections/${retired.replace(".", "-")}.ts`, root)), "Retired section modules must not load a separate reading page");
+}
 
 const markdown = read("text/shahnameh.md");
 const mdChapters = [];
@@ -62,4 +74,4 @@ for (const [i, [, summary, body]] of details.entries()) {
   for (const [j, match] of entries.entries()) assert.equal(match[1] === "x", built(chapter.sections[j]));
 }
 
-console.log(`✓ ${book.chapters.length} chapters, ${sections.length} unchanged sections, ${sections.reduce((n, s) => n + s.couplets.length, 0)} unchanged verse rows; Markdown, contents and README agree`);
+console.log(`✓ ${book.chapters.length} chapters, ${sections.length} sections, ${sections.reduce((n, s) => n + s.couplets.length, 0)} verse rows; Markdown, contents, redirects and README agree`);

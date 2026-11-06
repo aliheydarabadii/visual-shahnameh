@@ -2,7 +2,7 @@ import { LIGHT_LAYER, sectionArt } from "../art";
 import type { Section } from "../types";
 
 /**
- * 07.14 · فریدون → فریدون
+ * 07.14 · فریدون → آگاه شدن سلم و تور از پادشاهی منوچهر فرستادن پیام به نزد فریدون
  * Couplets: text/shahnameh.json, section 07.14, unchanged.
  * Paintings: art/prompts/07-14.md. One hundred and twenty-eight couplets.
  * The embassy leaves the East, stands under Fereydun's lamp, and rides back
@@ -13,7 +13,7 @@ const art = sectionArt("07.14");
 export const section: Section = {
   id: "07.14",
   chapter: { id: "07", title: "فریدون" },
-  title: "فریدون",
+  title: "آگاه شدن سلم و تور از پادشاهی منوچهر فرستادن پیام به نزد فریدون",
   couplets: [
     ["به سلم و به تور آمد این آگهی", "که شد روشن آن تخت شاهنشهی"],
     ["دل هر دو بیدادگر پر نهیب", "که اختر همی رفت سوی نشیب"],

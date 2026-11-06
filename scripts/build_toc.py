@@ -29,7 +29,7 @@ def main(src: str, out: str) -> None:
         for ch in book["chapters"]
     ]
     with open(out, "w", encoding="utf-8") as f:
-        json.dump({"eras": ERAS, "chapters": chapters}, f, ensure_ascii=False, separators=(",", ":"))
+        json.dump({"eras": ERAS, "sectionAliases": book["sectionAliases"], "chapters": chapters}, f, ensure_ascii=False, separators=(",", ":"))
         f.write("\n")
     print(f"{out}: {len(chapters)} chapters, {sum(len(c['sections']) for c in chapters)} sections")
 

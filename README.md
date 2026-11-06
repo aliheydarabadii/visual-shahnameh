@@ -103,7 +103,7 @@ UI, accessibility and engine fixes are welcome too.
 ## Chapter checklist
 
 As of 2026-11-06, chapters 01–07 are complete through **07.18, درگذشتن فریدون**.
-The app includes **40 of 646 sections** and **1,941 couplets**, with paintings
+The app includes **39 of 645 sections** and **1,941 couplets**, with paintings
 and generative music.
 Next: **08.01, پادشاهی منوچهر**. Unchecked chapters remain to be illustrated and scored.
 
@@ -171,7 +171,7 @@ Checked items are complete. The full text is available in [Markdown](text/shahna
 </details>
 
 <details>
-<summary>✓ 07 · فریدون (18/18 sections)</summary>
+<summary>✓ 07 · فریدون (17/17 sections)</summary>
 
 - [x] [07.01 · آغاز داستان](src/content/sections/07-01.ts)
 - [x] [07.02 · فرستادن فریدون، جندل را به یمن](src/content/sections/07-02.ts)
@@ -185,8 +185,7 @@ Checked items are complete. The full text is available in [Markdown](text/shahna
 - [x] [07.10 · کشتن برادران، ایرج را](src/content/sections/07-10.ts)
 - [x] [07.11 · آوردن تابوت ایرج به نزد فریدون](src/content/sections/07-11.ts)
 - [x] [07.12 · زادن منوچهر از مادر](src/content/sections/07-12.ts)
-- [x] [07.13 · آگاه شدن سلم و تور از پادشاهی منوچهر فرستادن پیام به نزد](src/content/sections/07-13.ts)
-- [x] [07.14 · فریدون](src/content/sections/07-14.ts)
+- [x] [07.14 · آگاه شدن سلم و تور از پادشاهی منوچهر فرستادن پیام به نزد فریدون](src/content/sections/07-14.ts)
 - [x] [07.15 · آهنگ رزم منوچهر با سلو و تور](src/content/sections/07-15.ts)
 - [x] [07.16 · نبرد منوچهر با سلم و تور](src/content/sections/07-16.ts)
 - [x] [07.17 · نامه منوچهر به نزد فریدون](src/content/sections/07-17.ts)

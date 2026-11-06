@@ -88,6 +88,10 @@ generated into the source and reader contents. Permanent section IDs come
 from the original PDF grouping. A section's parent is its enclosing chapter
 in the contents, never its ID prefix. Regrouping keeps section URLs, paintings
 and saved reading positions intact.
+When a wrapped PDF heading created a spurious empty section, source generation
+can join it to the adjacent text section without changing the latter's ID.
+`sectionAliases` in the generated contents redirects retired IDs to that
+canonical reading route. Aliases never appear as extra entries in the contents.
 
 ```
 threshold   →  dive  →  scene 1  →  dive  →  scene 2  → … →  last scene  →  ending

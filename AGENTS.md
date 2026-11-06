@@ -7,7 +7,7 @@ served by Cloudflare Workers Static Assets in production; R2 is an optional
 future migration (`DEPLOY.md`).
 
 The book is organized into 61 chapters (داستان), following Ganjoor, with
-646 existing sections (بخش). `text/chapter-map.json` defines the grouping.
+645 sections (بخش). `text/chapter-map.json` defines the grouping.
 Section IDs are permanent IDs from the original PDF extraction, so their
 prefix does not determine their current chapter. Look up the parent in
 `text/shahnameh.json`; never renumber section files or paintings.

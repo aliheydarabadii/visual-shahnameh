@@ -13,27 +13,28 @@ Joneydi edition; our earlier attribution to "Joneydi's 1354 edition" was wrong.
 | [shahnameh-ferdowsi.pdf](shahnameh-ferdowsi.pdf) | Original 1,973-page PDF, including its preface and contents. `pdfPage` values refer to physical PDF pages, starting at 1. |
 | `shahnameh.md` | Reading and grepping. `#` = chapter, `##` = section (sub-chapter), one numbered couplet per line: `first hemistich / second hemistich`. |
 | `shahnameh.json` | Code. `chapters[].sections[].couplets[]`, where each couplet is `[first, second]`. Chapters have IDs `01` through `61`; sections keep their original IDs and `pdfPage`. A section's prefix does not identify its current chapter. |
-| [chapter-map.json](chapter-map.json) | The 61 chapter titles, reference links, eras and contiguous ranges of permanent section IDs, plus the pre-migration section-content checksum. |
+| [chapter-map.json](chapter-map.json) | The 61 chapter titles, reference links, eras, section ranges and reviewed heading joins. Separate checksums cover raw PDF extraction and corrected section content. |
 | `anomalies.txt` | The 10 rows where a hemistich had no partner in the PDF. Check these by eye against the PDF before using those passages. |
 
-Current organization: 61 chapters, 646 sections, 49,615 verse rows.
+Current organization: 61 chapters, 645 sections, 49,615 verse rows.
 Ten rows lack one hemistich, so this is not a fully proofread couplet count.
 The extractor first assigns permanent section IDs from the PDF's original
 50 font-based groups, then applies `chapter-map.json` to organize them into
-61 chapters following Ganjoor. Sections stay intact, in order, and keep their
-text, titles and IDs. For example, chapter `08` contains sections `08.01`
+61 chapters following Ganjoor. Reviewed heading continuations are joined after
+assigning the legacy IDs. Verse text and the IDs of reading sections stay
+intact. For example, chapter `08` contains sections `08.01`
 through `09.31`; chapter `61` contains `50.01` through `50.14`.
 The chapter organization matches the reference; the finer subsection divisions
 and existing PDF verse pairings have not been replaced with Ganjoor's text.
 
 The first sub-chapter, آغاز کتاب → آغاز کتاب, is section `01.01` (15 couplets).
 
-Sections `07.13` and `07.14` expose an extraction bug. On physical PDF page
-106, one heading wraps onto a second line ending in «فریدون». The extractor
-mistook the two lines for separate section headings, creating an empty
-`07.13` and placing all 128 couplets under `07.14`, titled only «فریدون».
-This is not an intentional empty section in the book. Correcting these
-section boundaries and their reader links remains a separate source correction.
+On physical PDF page 106, one heading wraps onto a second line ending in
+«فریدون». Those lines originally created an empty `07.13` and put all 128
+couplets under `07.14`. They are now joined into one full title on `07.14`.
+The retired `07.13` URL redirects to `07.14`, preserving existing reading
+positions and artwork. No verses changed; the contents no longer includes
+an empty stop between `07.12` and `07.14`.
 
 ## How it was made
 
@@ -52,8 +53,9 @@ python3 -I scripts/crosscheck.py text/shahnameh.md work/text-crosscheck/raw.txt
 
 After installing PyMuPDF in `.venv`, `pnpm text:build` runs the first four
 generation and validation commands together. Rebuilding retains the 61-chapter
-organization. The recorded checksum rejects changes to the section content;
-any future source correction must be reviewed before updating that checksum.
+organization and heading correction. Recorded checksums reject unexpected
+changes to either the raw extraction or corrected sections; any future source
+correction must be reviewed before updating them.
 
 The PDF prints the verse in two columns. The script uses PyMuPDF glyph
 positions to pair them and to place section headings between rows. See the

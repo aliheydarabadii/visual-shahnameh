@@ -11,7 +11,7 @@ permissions:
 
 concurrency:
   group: ci-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   quality:
@@ -36,10 +36,15 @@ jobs:
       - name: Use the runner's installed Chrome
         run: echo "CHROMIUM_EXECUTABLE_PATH=$(command -v google-chrome)" >> "$GITHUB_ENV"
       - name: Install the audio checker
+        timeout-minutes: 6
         run: |
           if ! command -v ffmpeg; then
-            sudo apt-get update -o Acquire::Retries=1 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30
-            sudo apt-get install -y ffmpeg
+            # Use Ubuntu's primary mirror rather than the Azure mirror.
+            if [ -f /etc/apt/sources.list.d/ubuntu.sources ]; then
+              sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list.d/ubuntu.sources
+            fi
+            sudo apt-get update -o Acquire::Retries=1 -o Acquire::http::Timeout=15 -o Acquire::https::Timeout=15
+            sudo apt-get install -y --no-install-recommends -o Acquire::Retries=1 -o Acquire::http::Timeout=15 -o Acquire::https::Timeout=15 ffmpeg
           fi
       - name: Verify sections and immutable paintings
         run: node scripts/ci_sections.mjs

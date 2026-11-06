@@ -552,5 +552,13 @@
       "lastSection": "50.14"
     }
   ],
-  "sectionContentSha256": "9376a9c01c1e2baae3800c4c37886c4ae26e5465e16c664a9fe66469575a3de8"
+  "sectionContentSha256": "0b7a52779b3d127f55c3c581d8700a30710c6e5e354c5262e3ca40c7622cdbe9",
+  "pdfSectionContentSha256": "9376a9c01c1e2baae3800c4c37886c4ae26e5465e16c664a9fe66469575a3de8",
+  "joinedHeadings": [
+    {
+      "heading": "07.13",
+      "section": "07.14",
+      "pdfPage": 106
+    }
+  ]
 }

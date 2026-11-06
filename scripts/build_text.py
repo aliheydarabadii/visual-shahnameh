@@ -18,7 +18,8 @@ PDF layout facts this relies on (checked by hand on several pages):
 
 The PDF's 50 font-based groups assign permanent section IDs first. Then
 text/chapter-map.json regroups those intact sections into 61 chapters.
-Changing a chapter never renumbers sections or changes their verses.
+Reviewed wrapped headings are joined after assigning legacy IDs, so other
+sections never shift. Removed heading-only IDs become reader aliases.
 """
 
 import hashlib
@@ -37,12 +38,38 @@ PERSIAN_LETTERS = str.maketrans({"ي": "ی", "ك": "ک", "ى": "ی"})
 PAIR_TOLERANCE = 10  # points: first vs second hemistich; columns drift up to ~6pt, rows are 25pt apart
 
 
+def section_digest(sections):
+    payload = [[s["id"], s["title"], s["pdfPage"], s["couplets"]] for s in sections]
+    return hashlib.sha256(json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()
+
+
+def join_wrapped_headings(chapters, mapping):
+    """Join reviewed heading continuations without guessing or renumbering."""
+    sections = [s for ch in chapters for s in ch["sections"]]
+    if section_digest(sections) != mapping["pdfSectionContentSha256"]:
+        raise ValueError("PDF extraction changed; review it before updating the source checksum")
+    aliases = {}
+    for join in mapping["joinedHeadings"]:
+        group = next(ch["sections"] for ch in chapters if any(s["id"] == join["heading"] for s in ch["sections"]))
+        at = next(i for i, s in enumerate(group) if s["id"] == join["heading"])
+        heading = group[at]
+        if at + 1 >= len(group):
+            raise ValueError("A wrapped heading must have an adjacent continuation")
+        section = group[at + 1]
+        if heading["couplets"] or section["id"] != join["section"] or not section["couplets"]:
+            raise ValueError("Only an empty heading followed by its text section can be joined")
+        if heading["pdfPage"] != join["pdfPage"] or section["pdfPage"] != join["pdfPage"]:
+            raise ValueError("Wrapped heading lines must be on the reviewed PDF page")
+        section["title"] = f"{heading['title']} {section['title']}"
+        del group[at]
+        aliases[heading["id"]] = section["id"]
+    return aliases
+
+
 def regroup_chapters(chapters, mapping):
     """Apply a complete, contiguous partition of the existing section order."""
     sections = [s for ch in chapters for s in ch["sections"]]
-    payload = [[s["id"], s["title"], s["pdfPage"], s["couplets"]] for s in sections]
-    digest = hashlib.sha256(json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()
-    if digest != mapping["sectionContentSha256"]:
+    if section_digest(sections) != mapping["sectionContentSha256"]:
         raise ValueError("Extracted section content changed; review it before updating the chapter map checksum")
     positions = {s["id"]: i for i, s in enumerate(sections)}
     if len(positions) != len(sections):
@@ -178,10 +205,12 @@ def main():
 
     map_path = Path(__file__).resolve().parent.parent / "text/chapter-map.json"
     with map_path.open(encoding="utf-8") as f:
-        chapters = regroup_chapters(chapters, json.load(f))
+        mapping = json.load(f)
+    aliases = join_wrapped_headings(chapters, mapping)
+    chapters = regroup_chapters(chapters, mapping)
 
     with open(os.path.join(out_dir, "shahnameh.json"), "w", encoding="utf-8") as f:
-        json.dump({"source": os.path.basename(src), "chapters": chapters}, f, ensure_ascii=False, indent=1)
+        json.dump({"source": os.path.basename(src), "sectionAliases": aliases, "chapters": chapters}, f, ensure_ascii=False, indent=1)
 
     with open(os.path.join(out_dir, "shahnameh.md"), "w", encoding="utf-8") as f:
         f.write("# شاهنامه فردوسی\n\n")
