@@ -1,7 +1,7 @@
 """Build clean, structured Shahnameh text from the source PDF.
 
 Usage (from the project root):
-    .venv/bin/python -I scripts/build_text.py source/shahnameh-ferdowsi.pdf text/
+    .venv/bin/python -I scripts/build_text.py text/shahnameh-ferdowsi.pdf text/
 
 PDF layout facts this relies on (checked by hand on several pages):
   * 15pt BNazaninBold = verse. Right column (x > page centre) holds the first
