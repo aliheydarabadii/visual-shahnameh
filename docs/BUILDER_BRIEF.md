@@ -31,6 +31,10 @@ section end to end: `src/content/sections/02-01.ts` with
    ```
    Read all of it. Read the previous section's file (if built) so your
    opening follows from its ending.
+   Find the enclosing chapter in this JSON and use its `id` and `title` for
+   the section's `chapter` field. There are 61 chapters. Section IDs remain
+   from the original PDF grouping: `09.01`, for example, now belongs to
+   chapter `08`. Never infer the chapter from a section's ID prefix.
 3. **Plan the arc.** Group couplets into scenes of about 3–6 that share one
    painting; `scenes[0]` is the threshold with no couplets. Paintings per
    section: about one per 3–6 couplets, at least 3, at most 40. The paintings

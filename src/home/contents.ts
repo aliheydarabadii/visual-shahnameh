@@ -76,7 +76,7 @@ export class Contents {
     const open = this.toc.chapters.reduce((n, c) => n + this.lit(c).length, 0);
     const head = el("header", "contents__head", this.root);
     head.innerHTML = `
-      <h1 class="contents__title">پنجاه داستان</h1>
+      <h1 class="contents__title">${toPersianDigits(this.toc.chapters.length)} داستان</h1>
       <p class="contents__count">${toPersianDigits(open)} بخش گشوده از ${toPersianDigits(total)}</p>`;
 
     const collection = el("div", "contents__collection", this.root);

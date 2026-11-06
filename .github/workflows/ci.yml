@@ -31,6 +31,7 @@ jobs:
       - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
       - run: pnpm install --frozen-lockfile
       - run: pnpm audit --audit-level=low
+      - run: pnpm check:chapters
       - run: pnpm build
       - name: Use the runner's installed Chrome
         run: echo "CHROMIUM_EXECUTABLE_PATH=$(command -v google-chrome)" >> "$GITHUB_ENV"

@@ -34,6 +34,7 @@ if (!ids.length) {
 }
 const book = JSON.parse(readFileSync(join(root, "text/shahnameh.json"), "utf8"));
 const source = Object.fromEntries(book.chapters.flatMap((c) => c.sections.map((s) => [s.id, s])));
+const sourceChapters = Object.fromEntries(book.chapters.flatMap(c => c.sections.map(s => [s.id, { id: c.id, title: c.title }])));
 
 // Typecheck once for all sections (tsc --noEmit writes nothing, so it is safe in parallel).
 const tsc = spawnSync(join(root, "node_modules/.bin/tsc"), ["--noEmit", "-p", root], { encoding: "utf8" });
@@ -112,6 +113,7 @@ async function check(id) {
     );
     return {
       id: s.id,
+      chapter: s.chapter,
       couplets: s.couplets,
       scenes: s.scenes.map((x, i) => ({ image: x.image, couplets: x.couplets, hasSound: x.sound !== undefined, atmosphere: x.sound === undefined ? null : !!resolveSound(x.sound, i ? "contemplative" : "threshold").atmosphere })),
       imgs,
@@ -130,6 +132,10 @@ async function check(id) {
 
   // ---- text
   if (data.id !== id) errors.push(`section.id is "${data.id}", expected "${id}"`);
+  const chapter = sourceChapters[id];
+  if (data.chapter.id !== chapter.id || data.chapter.title !== chapter.title) {
+    errors.push(`chapter must match text/shahnameh.json: ${chapter.id} · ${chapter.title} (section prefixes are legacy IDs)`);
+  }
   const want = src.couplets;
   if (data.couplets.length !== want.length) errors.push(`has ${data.couplets.length} couplets, the text has ${want.length}`);
   want.forEach((c, i) => {

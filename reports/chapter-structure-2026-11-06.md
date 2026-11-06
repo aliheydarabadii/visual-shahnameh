@@ -3,6 +3,10 @@
 Investigated on 2026-11-06. This is a source and navigation investigation,
 not a new edition or a correction of the poem text.
 
+Update: the owner subsequently requested the 61-chapter regrouping. See the
+[completed migration](chapter-migration-2026-11-06.md). The 50-group counts
+below describe the extraction before that change. Known text issues remain.
+
 ## Recommendation
 
 Use Ganjoor's 61 top-level entries as the reference for a future reader

@@ -6,7 +6,12 @@ generative score. It is a static Vite + TypeScript site; paintings are
 served by Cloudflare Workers Static Assets in production; R2 is an optional
 future migration (`DEPLOY.md`).
 
-The book has 50 chapters (داستان) and 646 sections (بخش). The unit of work is
+The book is organized into 61 chapters (داستان), following Ganjoor, with
+646 existing sections (بخش). `text/chapter-map.json` defines the grouping.
+Section IDs are permanent IDs from the original PDF extraction, so their
+prefix does not determine their current chapter. Look up the parent in
+`text/shahnameh.json`; never renumber section files or paintings.
+The unit of work is
 one **section**: its couplets, 3–40 paintings (about one per 3–6 couplets), a score. Many agents build
 sections in parallel; nothing they build touches a shared file.
 
@@ -50,7 +55,7 @@ Also needed: Playwright's Chromium (`pnpm exec playwright-core install chromium`
 2. **Plan the bundles.** Contiguous sections go to the same builder so a
    story's characters and paintings stay consistent:
    ```sh
-   node scripts/next_sections.mjs --chapters 50 --agents 50   # every section of the next 50 chapters, in 50 balanced bundles
+   node scripts/next_sections.mjs --chapters 5 --agents 10    # next 5 of the 61 chapters, in 10 balanced bundles
    node scripts/next_sections.mjs --count 50 --agents 50      # the next 50 sections, one each
    ```
    The output is JSON: per agent, its sections with titles and couplet counts.

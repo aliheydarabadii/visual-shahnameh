@@ -983,7 +983,9 @@
      "id": "01.11"
     }
    ],
-   "id": "01"
+   "id": "01",
+   "era": "prologue",
+   "reference": "https://ganjoor.net/ferdousi/shahname/aghaz"
   },
   {
    "title": "کیومرس",
@@ -1285,7 +1287,9 @@
      "id": "02.01"
     }
    ],
-   "id": "02"
+   "id": "02",
+   "era": "myth",
+   "reference": "https://ganjoor.net/ferdousi/shahname/qmars"
   },
   {
    "title": "هوشنگ",
@@ -1451,7 +1455,9 @@
      "id": "03.01"
     }
    ],
-   "id": "03"
+   "id": "03",
+   "era": "myth",
+   "reference": "https://ganjoor.net/ferdousi/shahname/hushang"
   },
   {
    "title": "تهمورس",
@@ -1649,7 +1655,9 @@
      "id": "04.01"
     }
    ],
-   "id": "04"
+   "id": "04",
+   "era": "myth",
+   "reference": "https://ganjoor.net/ferdousi/shahname/tahmoores"
   },
   {
    "title": "جمشید",
@@ -2438,7 +2446,9 @@
      "id": "05.02"
     }
    ],
-   "id": "05"
+   "id": "05",
+   "era": "myth",
+   "reference": "https://ganjoor.net/ferdousi/shahname/jamshid"
   },
   {
    "title": "ضحاک",
@@ -4367,7 +4377,9 @@
      "id": "06.06"
     }
    ],
-   "id": "06"
+   "id": "06",
+   "era": "myth",
+   "reference": "https://ganjoor.net/ferdousi/shahname/zahak"
   },
   {
    "title": "فریدون",
@@ -8091,7 +8103,9 @@
      "id": "07.18"
     }
    ],
-   "id": "07"
+   "id": "07",
+   "era": "myth",
+   "reference": "https://ganjoor.net/ferdousi/shahname/fereydoon"
   },
   {
    "title": "منوچهر",
@@ -8271,14 +8285,7 @@
       ]
      ],
      "id": "08.01"
-    }
-   ],
-   "id": "08"
-  },
-  {
-   "title": "زال و رودابه",
-   "pdfPage": 125,
-   "sections": [
+    },
     {
      "title": "داستان زال و رودابه",
      "pdfPage": 126,
@@ -14945,10 +14952,12 @@
      "id": "09.31"
     }
    ],
-   "id": "09"
+   "id": "08",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/manoochehr"
   },
   {
-   "title": "نوذر",
+   "title": "پادشاهی نوذر",
    "pdfPage": 189,
    "sections": [
     {
@@ -16204,14 +16213,7 @@
       ]
      ],
      "id": "10.06"
-    }
-   ],
-   "id": "10"
-  },
-  {
-   "title": "افراسیاب",
-   "pdfPage": 203,
-   "sections": [
+    },
     {
      "title": "گرفتار شدن نوذر بر دست افراسیاب",
      "pdfPage": 204,
@@ -17215,10 +17217,12 @@
      "id": "11.06"
     }
    ],
-   "id": "11"
+   "id": "09",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/nozar"
   },
   {
-   "title": "زوتهماسپ",
+   "title": "پادشاهی زوطهماسپ",
    "pdfPage": 215,
    "sections": [
     {
@@ -17409,10 +17413,12 @@
      "id": "12.01"
     }
    ],
-   "id": "12"
+   "id": "10",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/zutahmasb"
   },
   {
-   "title": "گرشاسپ",
+   "title": "پادشاهی گرشاسپ",
    "pdfPage": 219,
    "sections": [
     {
@@ -18282,7 +18288,9 @@
      "id": "13.06"
     }
    ],
-   "id": "13"
+   "id": "11",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/garshasp"
   },
   {
    "title": "کیقباد",
@@ -19125,10 +19133,12 @@
      "id": "14.04"
     }
    ],
-   "id": "14"
+   "id": "12",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/kqobad"
   },
   {
-   "title": "کی کاووس",
+   "title": "پادشاهی کی‌کاووس و رفتن او به مازندران",
    "pdfPage": 239,
    "sections": [
     {
@@ -20234,14 +20244,7 @@
       ]
      ],
      "id": "15.04"
-    }
-   ],
-   "id": "15"
-  },
-  {
-   "title": "هفتخوان رستم",
-   "pdfPage": 251,
-   "sections": [
+    },
     {
      "title": "هفت خوان رستم",
      "pdfPage": 252,
@@ -22958,7 +22961,16 @@
       ]
      ],
      "id": "16.20"
-    },
+    }
+   ],
+   "id": "13",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/kkavoos"
+  },
+  {
+   "title": "رزم کاووس با شاه هاماوران",
+   "pdfPage": 277,
+   "sections": [
     {
      "title": "گشتن کاووس بر گرد جهان",
      "pdfPage": 277,
@@ -25554,10 +25566,12 @@
      "id": "16.34"
     }
    ],
-   "id": "16"
+   "id": "14",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/hamavaran"
   },
   {
-   "title": "رستم و سهراب",
+   "title": "سهراب",
    "pdfPage": 303,
    "sections": [
     {
@@ -29922,10 +29936,12 @@
      "id": "17.19"
     }
    ],
-   "id": "17"
+   "id": "15",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/sohrab"
   },
   {
-   "title": "سیاوش",
+   "title": "داستان سیاوش",
    "pdfPage": 345,
    "sections": [
     {
@@ -45418,10 +45434,12 @@
      "id": "18.55"
     }
    ],
-   "id": "18"
+   "id": "16",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/siavosh"
   },
   {
-   "title": "پادشاهی کیخسرو",
+   "title": "پادشاهی کیخسرو شصت سال بود",
    "pdfPage": 489,
    "sections": [
     {
@@ -46981,7 +46999,16 @@
       ]
      ],
      "id": "19.06"
-    },
+    }
+   ],
+   "id": "17",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/kkhosro"
+  },
+  {
+   "title": "گفتار اندر داستان فرود سیاوش",
+   "pdfPage": 504,
+   "sections": [
     {
      "title": "گفتار اندر رزم فرود سیاوشان",
      "pdfPage": 504,
@@ -52174,7 +52201,9 @@
      "id": "19.19"
     }
    ],
-   "id": "19"
+   "id": "18",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/forood"
   },
   {
    "title": "داستان کاموس کشانی",
@@ -58219,7 +58248,9 @@
      "id": "20.22"
     }
    ],
-   "id": "20"
+   "id": "19",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/kamoos"
   },
   {
    "title": "داستان خاقان چین",
@@ -64004,7 +64035,9 @@
      "id": "21.13"
     }
    ],
-   "id": "21"
+   "id": "20",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/khaghan"
   },
   {
    "title": "داستان اکوان دیو",
@@ -64811,10 +64844,12 @@
      "id": "22.04"
     }
    ],
-   "id": "22"
+   "id": "21",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/akvan"
   },
   {
-   "title": "داستان بیژن با منیژه",
+   "title": "داستان بیژن و منیژه",
    "pdfPage": 671,
    "sections": [
     {
@@ -70185,10 +70220,12 @@
      "id": "23.17"
     }
    ],
-   "id": "23"
+   "id": "22",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/bizhan"
   },
   {
-   "title": "داستان دورازده رخ",
+   "title": "داستان دوازده رخ",
    "pdfPage": 721,
    "sections": [
     {
@@ -80432,7 +80469,9 @@
      "id": "24.24"
     }
    ],
-   "id": "24"
+   "id": "23",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/12rokh"
   },
   {
    "title": "جنگ بزرگ کیخسرو با افراسیاب",
@@ -93100,7 +93139,9 @@
      "id": "25.34"
     }
    ],
-   "id": "25"
+   "id": "24",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/mahmood"
   },
   {
    "title": "پادشاهی لهراسپ",
@@ -96717,10 +96758,12 @@
      "id": "26.02"
     }
    ],
-   "id": "26"
+   "id": "25",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/lohrasp"
   },
   {
-   "title": "پادشاهی گشتاسپ",
+   "title": "پادشاهی گشتاسپ صد و بیست سال بود",
    "pdfPage": 965,
    "sections": [
     {
@@ -102927,10 +102970,12 @@
      "id": "27.16"
     }
    ],
-   "id": "27"
+   "id": "26",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/goshtasp"
   },
   {
-   "title": "هفتخوان اسفندیار",
+   "title": "داستان هفتخوان اسفندیار",
    "pdfPage": 1023,
    "sections": [
     {
@@ -106420,7 +106465,9 @@
      "id": "28.14"
     }
    ],
-   "id": "28"
+   "id": "27",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/7esfandyar"
   },
   {
    "title": "داستان رستم و اسفندیار",
@@ -113305,7 +113352,9 @@
      "id": "29.22"
     }
    ],
-   "id": "29"
+   "id": "28",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/esfandyar"
   },
   {
    "title": "داستان رستم و شغاد",
@@ -114775,10 +114824,12 @@
      "id": "30.05"
     }
    ],
-   "id": "30"
+   "id": "29",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/shqad"
   },
   {
-   "title": "پادشاهی بهمن اسفندیار",
+   "title": "پادشاهی بهمن اسفندیار صد و دوازده سال بود",
    "pdfPage": 1137,
    "sections": [
     {
@@ -115552,7 +115603,16 @@
       ]
      ],
      "id": "31.04"
-    },
+    }
+   ],
+   "id": "30",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/bahman"
+  },
+  {
+   "title": "پادشاهی همای چهرزاد سی و دو سال بود",
+   "pdfPage": 1147,
+   "sections": [
     {
      "title": "پادشاهی همای چهر آزاد",
      "pdfPage": 1147,
@@ -116892,7 +116952,16 @@
       ]
      ],
      "id": "31.11"
-    },
+    }
+   ],
+   "id": "31",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/homa"
+  },
+  {
+   "title": "پادشاهی داراب دوازده سال بود",
+   "pdfPage": 1161,
+   "sections": [
     {
      "title": "پادشاهی داراب",
      "pdfPage": 1161,
@@ -117469,7 +117538,16 @@
       ]
      ],
      "id": "31.17"
-    },
+    }
+   ],
+   "id": "32",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/darab"
+  },
+  {
+   "title": "پادشاهی دارای داراب چهارده سال بود",
+   "pdfPage": 1169,
+   "sections": [
     {
      "title": "پادشاهی دارای داراب",
      "pdfPage": 1169,
@@ -119341,7 +119419,9 @@
      "id": "31.26"
     }
    ],
-   "id": "31"
+   "id": "33",
+   "era": "heroes",
+   "reference": "https://ganjoor.net/ferdousi/shahname/dara"
   },
   {
    "title": "پادشاهی اسکندر",
@@ -127144,7 +127224,9 @@
      "id": "32.11"
     }
    ],
-   "id": "32"
+   "id": "34",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/eskandar"
   },
   {
    "title": "پادشاهی اشکانیان",
@@ -129183,14 +129265,7 @@
       ]
      ],
      "id": "33.06"
-    }
-   ],
-   "id": "33"
-  },
-  {
-   "title": "داستان هفتواد و سرگذشت کرم",
-   "pdfPage": 1277,
-   "sections": [
+    },
     {
      "title": "داستان کرم هفتواد",
      "pdfPage": 1278,
@@ -130339,10 +130414,12 @@
      "id": "34.05"
     }
    ],
-   "id": "34"
+   "id": "35",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/ashkanian"
   },
   {
-   "title": "پادشاهی ساسانیان",
+   "title": "پادشاهی اردشیر",
    "pdfPage": 1289,
    "sections": [
     {
@@ -133149,7 +133226,16 @@
       ]
      ],
      "id": "35.07"
-    },
+    }
+   ],
+   "id": "36",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/ardeshir"
+  },
+  {
+   "title": "پادشاهی شاپور پسر اردشیر سی و یک سال بود",
+   "pdfPage": 1315,
+   "sections": [
     {
      "title": "پادشاهی شاپور اردشیران",
      "pdfPage": 1315,
@@ -133535,7 +133621,16 @@
       ]
      ],
      "id": "35.09"
-    },
+    }
+   ],
+   "id": "37",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/shapoor"
+  },
+  {
+   "title": "پادشاهی اورمزد",
+   "pdfPage": 1318,
+   "sections": [
     {
      "title": "پادشاهی اورمزد",
      "pdfPage": 1318,
@@ -133922,7 +134017,16 @@
       ]
      ],
      "id": "35.10"
-    },
+    }
+   ],
+   "id": "38",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/oormazd"
+  },
+  {
+   "title": "پادشاهی بهرام اورمزد",
+   "pdfPage": 1322,
+   "sections": [
     {
      "title": "پادشاهی بهرام اورمزد",
      "pdfPage": 1322,
@@ -134085,7 +134189,16 @@
       ]
      ],
      "id": "35.11"
-    },
+    }
+   ],
+   "id": "39",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/bahram"
+  },
+  {
+   "title": "پادشاهی بهرام نوزده سال بود",
+   "pdfPage": 1323,
+   "sections": [
     {
      "title": "پادشاهی بهرام بهرام نوزده سال بود",
      "pdfPage": 1323,
@@ -134208,7 +134321,16 @@
       ]
      ],
      "id": "35.12"
-    },
+    }
+   ],
+   "id": "40",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/bahram19"
+  },
+  {
+   "title": "پادشاهی بهرام بهرامیان",
+   "pdfPage": 1325,
+   "sections": [
     {
      "title": "پادشاهی بهرام بهرامیان",
      "pdfPage": 1325,
@@ -134275,7 +134397,16 @@
       ]
      ],
      "id": "35.13"
-    },
+    }
+   ],
+   "id": "41",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/bahramian"
+  },
+  {
+   "title": "پادشاهی نرسی بهرام",
+   "pdfPage": 1325,
+   "sections": [
     {
      "title": "پادشاهی نرسی بهرام",
      "pdfPage": 1325,
@@ -134378,7 +134509,16 @@
       ]
      ],
      "id": "35.14"
-    },
+    }
+   ],
+   "id": "42",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/nrsi"
+  },
+  {
+   "title": "پادشاهی اورمزد نرسی",
+   "pdfPage": 1326,
+   "sections": [
     {
      "title": "پادشاهی اورمزد نرسی",
      "pdfPage": 1326,
@@ -134541,7 +134681,16 @@
       ]
      ],
      "id": "35.15"
-    },
+    }
+   ],
+   "id": "43",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/oorner"
+  },
+  {
+   "title": "پادشاهی شاپور ذوالاکتاف",
+   "pdfPage": 1328,
+   "sections": [
     {
      "title": "پادشاهی شاپور دویم",
      "pdfPage": 1328,
@@ -137201,7 +137350,16 @@
       ]
      ],
      "id": "35.19"
-    },
+    }
+   ],
+   "id": "44",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/zolaktaf"
+  },
+  {
+   "title": "پادشاهی اردشیر نکوکار",
+   "pdfPage": 1351,
+   "sections": [
     {
      "title": "پادشاهی اردشیر نکوکار",
      "pdfPage": 1351,
@@ -137276,7 +137434,16 @@
       ]
      ],
      "id": "35.20"
-    },
+    }
+   ],
+   "id": "45",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/nekookar"
+  },
+  {
+   "title": "پادشاهی شاپور سوم",
+   "pdfPage": 1352,
+   "sections": [
     {
      "title": "پادشاهی شاپور سیوم",
      "pdfPage": 1352,
@@ -137419,7 +137586,16 @@
       ]
      ],
      "id": "35.21"
-    },
+    }
+   ],
+   "id": "46",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/shapoor3"
+  },
+  {
+   "title": "پادشاهی بهرام شاپور",
+   "pdfPage": 1353,
+   "sections": [
     {
      "title": "پادشاهی بهرام شاپور",
      "pdfPage": 1353,
@@ -137560,10 +137736,12 @@
      "id": "35.22"
     }
    ],
-   "id": "35"
+   "id": "47",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/bahpoor"
   },
   {
-   "title": "پادشاهی یزدگرد بزه",
+   "title": "پادشاهی یزدگرد بزه‌گر",
    "pdfPage": 1355,
    "sections": [
     {
@@ -140398,7 +140576,9 @@
      "id": "36.09"
     }
    ],
-   "id": "36"
+   "id": "48",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/bezehgar"
   },
   {
    "title": "پادشاهی بهرام گور",
@@ -150924,10 +151104,12 @@
      "id": "37.21"
     }
    ],
-   "id": "37"
+   "id": "49",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/bahgoor"
   },
   {
-   "title": "پادشاهی یزدگرد پسر بهرام گور",
+   "title": "پادشاهی یزدگرد هجده سال بود",
    "pdfPage": 1479,
    "sections": [
     {
@@ -151123,14 +151305,7 @@
       ]
      ],
      "id": "38.02"
-    }
-   ],
-   "id": "38"
-  },
-  {
-   "title": "پادشاهی پیروز",
-   "pdfPage": 1483,
-   "sections": [
+    },
     {
      "title": "پادشاهی پیروز پسر یزدگرد",
      "pdfPage": 1484,
@@ -151693,14 +151868,7 @@
       ]
      ],
      "id": "39.01"
-    }
-   ],
-   "id": "39"
-  },
-  {
-   "title": "پادشاهی بلاش",
-   "pdfPage": 1489,
-   "sections": [
+    },
     {
      "title": "پادشاهی بلاش پسر پیروز",
      "pdfPage": 1490,
@@ -152465,10 +152633,12 @@
      "id": "40.01"
     }
    ],
-   "id": "40"
+   "id": "50",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/yazdgerd"
   },
   {
-   "title": "پادشاهی قباد",
+   "title": "پادشاهی قباد چهل و سه سال بود",
    "pdfPage": 1497,
    "sections": [
     {
@@ -154091,10 +154261,12 @@
      "id": "41.09"
     }
    ],
-   "id": "41"
+   "id": "51",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/qobad"
   },
   {
-   "title": "پادشاهی انوشیروان",
+   "title": "پادشاهی کسری نوشین روان چهل و هشت سال بود",
    "pdfPage": 1515,
    "sections": [
     {
@@ -172229,10 +172401,12 @@
      "id": "42.37"
     }
    ],
-   "id": "42"
+   "id": "52",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/anooshirvan"
   },
   {
-   "title": "پادشاهی هرمزد",
+   "title": "پادشاهی هرمزد دوازده سال بود",
    "pdfPage": 1679,
    "sections": [
     {
@@ -179918,7 +180092,9 @@
      "id": "43.18"
     }
    ],
-   "id": "43"
+   "id": "53",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/hormozd"
   },
   {
    "title": "پادشاهی خسرو پرویز",
@@ -193670,14 +193846,7 @@
       ]
      ],
      "id": "44.40"
-    }
-   ],
-   "id": "44"
-  },
-  {
-   "title": "داستان خسرو و شیرین",
-   "pdfPage": 1875,
-   "sections": [
+    },
     {
      "title": "داستان خسرو و شیرین",
      "pdfPage": 1876,
@@ -196634,10 +196803,12 @@
      "id": "45.13"
     }
    ],
-   "id": "45"
+   "id": "54",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/parviz"
   },
   {
-   "title": "پادشاهی قباد مشهور بشیرویه",
+   "title": "پادشاهی شیرویه",
    "pdfPage": 1905,
    "sections": [
     {
@@ -199083,7 +199254,9 @@
      "id": "46.06"
     }
    ],
-   "id": "46"
+   "id": "55",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/shirooye"
   },
   {
    "title": "پادشاهی اردشیر شیروی",
@@ -199302,7 +199475,16 @@
       ]
      ],
      "id": "47.02"
-    },
+    }
+   ],
+   "id": "56",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/ardeshiroo"
+  },
+  {
+   "title": "پادشاهی فرایین",
+   "pdfPage": 1932,
+   "sections": [
     {
      "title": "پادشاهی گراز نامبردار به فرایین",
      "pdfPage": 1932,
@@ -199519,10 +199701,12 @@
      "id": "47.03"
     }
    ],
-   "id": "47"
+   "id": "57",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/farayeen"
   },
   {
-   "title": "پادشاهی پوراندخت",
+   "title": "پادشاهی پوران دخت",
    "pdfPage": 1935,
    "sections": [
     {
@@ -199625,7 +199809,9 @@
      "id": "48.01"
     }
    ],
-   "id": "48"
+   "id": "58",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/pooran"
   },
   {
    "title": "پادشاهی آزرم دخت",
@@ -199681,7 +199867,16 @@
       ]
      ],
      "id": "49.01"
-    },
+    }
+   ],
+   "id": "59",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/azarmdokht"
+  },
+  {
+   "title": "پادشاهی فرخ زاد",
+   "pdfPage": 1938,
+   "sections": [
     {
      "title": "پادشاهی فرخ زاد",
      "pdfPage": 1938,
@@ -199750,7 +199945,9 @@
      "id": "49.02"
     }
    ],
-   "id": "49"
+   "id": "60",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/farrokh"
   },
   {
    "title": "پادشاهی یزدگرد",
@@ -203313,7 +203510,9 @@
      "id": "50.14"
     }
    ],
-   "id": "50"
+   "id": "61",
+   "era": "history",
+   "reference": "https://ganjoor.net/ferdousi/shahname/yazdgerd3"
   }
  ]
 }

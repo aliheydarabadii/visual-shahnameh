@@ -130,10 +130,17 @@ with paintings and a score; links open their implementation. The text for all
 646 sections is available in [Markdown](text/shahnameh.md),
 [JSON](text/shahnameh.json), and the [original PDF](text/shahnameh-ferdowsi.pdf).
 
-These 50 groups follow the PDF extraction. Ganjoor and Divansara organize the
-book into 61 top-level entries. See the [source comparison](reports/chapter-structure-2026-11-06.md)
-for the mapping, known text issues and a proposed navigation change. Current
-section IDs and the checklist below retain the existing grouping.
+The text and reader now use **61 chapters**, following Ganjoor's top-level
+contents. The [chapter map](text/chapter-map.json) records how the original
+50 PDF groups were reorganized. Section IDs remain permanent: `09.01`, for
+example, belongs to chapter `08`, منوچهر. Every section and verse remains in
+its original order. See the [migration report](reports/chapter-migration-2026-11-06.md)
+and [source investigation](reports/chapter-structure-2026-11-06.md) for the
+mapping and the text issues that remain to be reviewed.
+
+To regenerate this inventory after completing sections, run
+`node scripts/update_readme_contents.mjs`. `pnpm check:chapters` checks the
+source, reader contents and inventory against the chapter map.
 
 <!-- chapter-checklist:start -->
 <details>
@@ -219,15 +226,9 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 08 · منوچهر (0/1 sections)</summary>
+<summary>○ 08 · منوچهر (0/32 sections)</summary>
 
 - [ ] 08.01 · پادشاهی منوچهر
-
-</details>
-
-<details>
-<summary>○ 09 · زال و رودابه (0/31 sections)</summary>
-
 - [ ] 09.01 · داستان زال و رودابه
 - [ ] 09.02 · پناه دادن سیمرغ، زال را
 - [ ] 09.03 · آگاه شدن سام نریمان، از زال
@@ -263,7 +264,7 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 10 · نوذر (0/6 sections)</summary>
+<summary>○ 09 · پادشاهی نوذر (0/12 sections)</summary>
 
 - [ ] 10.01 · پادشاهی نوذر
 - [ ] 10.02 · نامه نوشتن نوذر به نزدیک سام
@@ -271,12 +272,6 @@ section IDs and the checklist below retain the existing grouping.
 - [ ] 10.04 · آمدن افراسیاب به ایرانزمین
 - [ ] 10.05 · رزم نخستین افراسیاب
 - [ ] 10.06 · دیگر میدان رزم
-
-</details>
-
-<details>
-<summary>○ 11 · افراسیاب (0/6 sections)</summary>
-
 - [ ] 11.01 · گرفتار شدن نوذر بر دست افراسیاب
 - [ ] 11.02 · نبرد قارو و ویسه، و گریختن ویسه
 - [ ] 11.03 · لشکر کشی شماساس و خزروان به سیستان
@@ -287,14 +282,14 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 12 · زوتهماسپ (0/1 sections)</summary>
+<summary>○ 10 · پادشاهی زوطهماسپ (0/1 sections)</summary>
 
 - [ ] 12.01 · پادشاهی زوتهماسپ
 
 </details>
 
 <details>
-<summary>○ 13 · گرشاسپ (0/6 sections)</summary>
+<summary>○ 11 · پادشاهی گرشاسپ (0/6 sections)</summary>
 
 - [ ] 13.01 · پادشاهی گرشاسپ
 - [ ] 13.02 · لشکر کشیدن افراسیاب به ایران
@@ -306,7 +301,7 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 14 · کیقباد (0/4 sections)</summary>
+<summary>○ 12 · کیقباد (0/4 sections)</summary>
 
 - [ ] 14.01 · پادشاهی کیقباد
 - [ ] 14.02 · نخستین نبرد رستم با اسفندیار
@@ -316,18 +311,12 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 15 · کی کاووس (0/4 sections)</summary>
+<summary>○ 13 · پادشاهی کی‌کاووس و رفتن او به مازندران (0/24 sections)</summary>
 
 - [ ] 15.01 · پادشاهی کاووس، آمدن رامشگری از مازندران نزد کاووس
 - [ ] 15.02 · پند دادن زال مر کاووس را
 - [ ] 15.03 · لشکر کشیدن کیکاووس به مازندران
 - [ ] 15.04 · پیام کاووس به نزد زال
-
-</details>
-
-<details>
-<summary>○ 16 · هفتخوان رستم (0/34 sections)</summary>
-
 - [ ] 16.01 · هفت خوان رستم
 - [ ] 16.02 · خوان نخست (heading only, no couplets)
 - [ ] 16.03 · کشتن رخش، شیر را
@@ -348,6 +337,12 @@ section IDs and the checklist below retain the existing grouping.
 - [ ] 16.18 · نبرد کاووس با شاه مازندران
 - [ ] 16.19 · بخشیدن کاووس مازندران را به اولاد
 - [ ] 16.20 · باز آمدن کاووس به شهر ایران و رفتن رستم به سیستان
+
+</details>
+
+<details>
+<summary>○ 14 · رزم کاووس با شاه هاماوران (0/14 sections)</summary>
+
 - [ ] 16.21 · گشتن کاووس بر گرد جهان
 - [ ] 16.22 · رزم کاووس با شاه هاماوران
 - [ ] 16.23 · بزن خواستن کاووس، سودابه دختر شاه هاماوران را
@@ -366,7 +361,7 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 17 · رستم و سهراب (0/19 sections)</summary>
+<summary>○ 15 · سهراب (0/19 sections)</summary>
 
 - [ ] 17.01 · داستان رستم و سهراب
 - [ ] 17.02 · آغاز داستان
@@ -391,7 +386,7 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 18 · سیاوش (0/55 sections)</summary>
+<summary>○ 16 · داستان سیاوش (0/55 sections)</summary>
 
 - [ ] 18.01 · داستان سیاوش
 - [ ] 18.02 · بردن رستم سیاوش را به سیستان و پروریدن وی را
@@ -452,7 +447,7 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 19 · پادشاهی کیخسرو (0/19 sections)</summary>
+<summary>○ 17 · پادشاهی کیخسرو شصت سال بود (0/6 sections)</summary>
 
 - [ ] 19.01 · آغاز داستان
 - [ ] 19.02 · آمدن زال و رستم به دیدن کیخسرو
@@ -460,6 +455,12 @@ section IDs and the checklist below retain the existing grouping.
 - [ ] 19.04 · پیمان بستن کیخسرو با کاووس در جنگ افراسیاب
 - [ ] 19.05 · شمردن کیخسرو پهلوانانرا و گنج بخشیدن ایشانرا
 - [ ] 19.06 · آراستن کیخسرو لشکر خود را
+
+</details>
+
+<details>
+<summary>○ 18 · گفتار اندر داستان فرود سیاوش (0/13 sections)</summary>
+
 - [ ] 19.07 · گفتار اندر رزم فرود سیاوشان
 - [ ] 19.08 · رزم فرود با ریونیز و کشته شدن ریونیز
 - [ ] 19.09 · رزم فرود با زرسپ
@@ -477,7 +478,7 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 20 · داستان کاموس کشانی (0/22 sections)</summary>
+<summary>○ 19 · داستان کاموس کشانی (0/22 sections)</summary>
 
 - [ ] 20.01 · داستان کاموس کشانی
 - [ ] 20.02 · خوار کردن خسرو توس را
@@ -505,7 +506,7 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 21 · داستان خاقان چین (0/13 sections)</summary>
+<summary>○ 20 · داستان خاقان چین (0/13 sections)</summary>
 
 - [ ] 21.01 · خبر یافتن خاقان از کشته شدن کاموس
 - [ ] 21.02 · رزم چنگش با رستم
@@ -524,7 +525,7 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 22 · داستان اکوان دیو (0/4 sections)</summary>
+<summary>○ 21 · داستان اکوان دیو (0/4 sections)</summary>
 
 - [ ] 22.01 · آغاز داستان
 - [ ] 22.02 · جستن رستم اکوان دیو را
@@ -534,7 +535,7 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 23 · داستان بیژن با منیژه (0/17 sections)</summary>
+<summary>○ 22 · داستان بیژن و منیژه (0/17 sections)</summary>
 
 - [ ] 23.01 · آغاز داستان
 - [ ] 23.02 · داد خواهی ارمانیان از خسرو
@@ -557,7 +558,7 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 24 · داستان دورازده رخ (0/24 sections)</summary>
+<summary>○ 23 · داستان دوازده رخ (0/24 sections)</summary>
 
 - [ ] 24.01 · آغاز داستان
 - [ ] 24.02 · در خواندن افراسیاب سپاه را
@@ -587,7 +588,7 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 25 · جنگ بزرگ کیخسرو با افراسیاب (0/34 sections)</summary>
+<summary>○ 24 · جنگ بزرگ کیخسرو با افراسیاب (0/34 sections)</summary>
 
 - [ ] 25.01 · گفتار اندر ستایش سلطان محمود
 - [ ] 25.02 · لشکر آراستن کیخسرو بجنگ افراسیاب
@@ -627,7 +628,7 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 26 · پادشاهی لهراسپ (0/2 sections)</summary>
+<summary>○ 25 · پادشاهی لهراسپ (0/2 sections)</summary>
 
 - [ ] 26.01 · پادشاهی لهراسپ
 - [ ] 26.02 · داستان کتایون با گشتاسپ
@@ -635,7 +636,7 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 27 · پادشاهی گشتاسپ (0/16 sections)</summary>
+<summary>○ 26 · پادشاهی گشتاسپ صد و بیست سال بود (0/16 sections)</summary>
 
 - [ ] 27.01 · بخواب دیدن فردوسی دقیقی را
 - [ ] 27.02 · گفتار دقیقی
@@ -657,7 +658,7 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 28 · هفتخوان اسفندیار (0/14 sections)</summary>
+<summary>○ 27 · داستان هفتخوان اسفندیار (0/14 sections)</summary>
 
 - [ ] 28.01 · ستایش سلطان محمود
 - [ ] 28.02 · آغاز داستان
@@ -677,7 +678,7 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 29 · داستان رستم و اسفندیار (0/22 sections)</summary>
+<summary>○ 28 · داستان رستم و اسفندیار (0/22 sections)</summary>
 
 - [ ] 29.01 · داستان رستم و اسفندیار
 - [ ] 29.02 · آغاز داستان
@@ -705,7 +706,7 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 30 · داستان رستم و شغاد (0/5 sections)</summary>
+<summary>○ 29 · داستان رستم و شغاد (0/5 sections)</summary>
 
 - [ ] 30.01 · آغاز داستان
 - [ ] 30.02 · رفتن رستم بکابل از بهر برادرش شغاد
@@ -716,12 +717,18 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 31 · پادشاهی بهمن اسفندیار (0/26 sections)</summary>
+<summary>○ 30 · پادشاهی بهمن اسفندیار صد و دوازده سال بود (0/4 sections)</summary>
 
 - [ ] 31.01 · کین خواهی بهمن از بهر خون اسفندیار
 - [ ] 31.02 · در بند انداختن بهمن زال را
 - [ ] 31.03 · رزم فرامرز با بهمن و کشته شدن فرامرز
 - [ ] 31.04 · رها کردن بهمن زال را و بازگشتن بایران
+
+</details>
+
+<details>
+<summary>○ 31 · پادشاهی همای چهرزاد سی و دو سال بود (0/7 sections)</summary>
+
 - [ ] 31.05 · پادشاهی همای چهر آزاد (heading only, no couplets)
 - [ ] 31.06 · گذاشتن همای پسر خود داراب را در صندوقی بدریای فرات
 - [ ] 31.07 · یافتن گازر صندوق و پروردنش داراب را
@@ -729,12 +736,24 @@ section IDs and the checklist below retain the existing grouping.
 - [ ] 31.09 · داستان رشنواد و داراب و تاق شکسته
 - [ ] 31.10 · رزم داراب با لشکر روم و گریز رومیان
 - [ ] 31.11 · شناختن همای پسر را
+
+</details>
+
+<details>
+<summary>○ 32 · پادشاهی داراب دوازده سال بود (0/6 sections)</summary>
+
 - [ ] 31.12 · پادشاهی داراب (heading only, no couplets)
 - [ ] 31.13 · پادشاهی داراب
 - [ ] 31.14 · ساختن داراب شهر داراب کرد را
 - [ ] 31.15 · رزم داراب با شعیب تازی
 - [ ] 31.16 · رزم داراب با فیلقوس و بزنی گرفتن دخترش
 - [ ] 31.17 · باز فرستادن داراب دختر فیلقوس را و زادن اسکندر از او
+
+</details>
+
+<details>
+<summary>○ 33 · پادشاهی دارای داراب چهارده سال بود (0/9 sections)</summary>
+
 - [ ] 31.18 · پادشاهی دارای داراب (heading only, no couplets)
 - [ ] 31.19 · پادشاهی دارا پسر داراب
 - [ ] 31.20 · یورش اسکندر به ایران
@@ -748,7 +767,7 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 32 · پادشاهی اسکندر (0/11 sections)</summary>
+<summary>○ 34 · پادشاهی اسکندر (0/11 sections)</summary>
 
 - [ ] 32.01 · پادشاهی اسکندر
 - [ ] 32.02 · نامه نبشتن اسکندر بزن و دختر دارا
@@ -765,7 +784,7 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 33 · پادشاهی اشکانیان (0/6 sections)</summary>
+<summary>○ 35 · پادشاهی اشکانیان (0/11 sections)</summary>
 
 - [ ] 33.01 · پادشاهی اشکانیان
 - [ ] 33.02 · آغاز داستان
@@ -773,12 +792,6 @@ section IDs and the checklist below retain the existing grouping.
 - [ ] 33.04 · زادن اردشیر بابکان و سرگذشت او با اردوان
 - [ ] 33.05 · نامه اردوان به بهمن پسر خود
 - [ ] 33.06 · رزم اردشیر  با کردانشاه و شکست یافتن
-
-</details>
-
-<details>
-<summary>○ 34 · داستان هفتواد و سرگذشت کرم (0/5 sections)</summary>
-
 - [ ] 34.01 · داستان کرم هفتواد
 - [ ] 34.02 · لشکر کشیدن اردشیر به رزم هفتواد
 - [ ] 34.03 · بازگشتن ازدشیر از رزم هفتواد
@@ -788,7 +801,7 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 35 · پادشاهی ساسانیان (0/22 sections)</summary>
+<summary>○ 36 · پادشاهی اردشیر (0/7 sections)</summary>
 
 - [ ] 35.01 · پادشاهی اردشیر بابکان
 - [ ] 35.02 · پیش بینی کید هندی
@@ -797,26 +810,92 @@ section IDs and the checklist below retain the existing grouping.
 - [ ] 35.05 · اندرز اردشیر بابکان
 - [ ] 35.06 · سخن فردوسی
 - [ ] 35.07 · پیمان اردشیر بابکان با شاپور
+
+</details>
+
+<details>
+<summary>○ 37 · پادشاهی شاپور پسر اردشیر سی و یک سال بود (0/2 sections)</summary>
+
 - [ ] 35.08 · پادشاهی شاپور اردشیران
 - [ ] 35.09 · رزم شاپور با رومیان و آشتی خواستن قیصر
+
+</details>
+
+<details>
+<summary>○ 38 · پادشاهی اورمزد (0/1 sections)</summary>
+
 - [ ] 35.10 · پادشاهی اورمزد
+
+</details>
+
+<details>
+<summary>○ 39 · پادشاهی بهرام اورمزد (0/1 sections)</summary>
+
 - [ ] 35.11 · پادشاهی بهرام اورمزد
+
+</details>
+
+<details>
+<summary>○ 40 · پادشاهی بهرام نوزده سال بود (0/1 sections)</summary>
+
 - [ ] 35.12 · پادشاهی بهرام بهرام نوزده سال بود
+
+</details>
+
+<details>
+<summary>○ 41 · پادشاهی بهرام بهرامیان (0/1 sections)</summary>
+
 - [ ] 35.13 · پادشاهی بهرام بهرامیان
+
+</details>
+
+<details>
+<summary>○ 42 · پادشاهی نرسی بهرام (0/1 sections)</summary>
+
 - [ ] 35.14 · پادشاهی نرسی بهرام
+
+</details>
+
+<details>
+<summary>○ 43 · پادشاهی اورمزد نرسی (0/1 sections)</summary>
+
 - [ ] 35.15 · پادشاهی اورمزد نرسی
+
+</details>
+
+<details>
+<summary>○ 44 · پادشاهی شاپور ذوالاکتاف (0/4 sections)</summary>
+
 - [ ] 35.16 · پادشاهی شاپور دویم
 - [ ] 35.17 · رفتن شاپور به روم
 - [ ] 35.18 · گریختن شاپور با کنیزک از روم
 - [ ] 35.19 · پدیدار شدن مانی
+
+</details>
+
+<details>
+<summary>○ 45 · پادشاهی اردشیر نکوکار (0/1 sections)</summary>
+
 - [ ] 35.20 · پادشاهی اردشیر نکوکار
+
+</details>
+
+<details>
+<summary>○ 46 · پادشاهی شاپور سوم (0/1 sections)</summary>
+
 - [ ] 35.21 · پادشاهی شاپور سیوم
+
+</details>
+
+<details>
+<summary>○ 47 · پادشاهی بهرام شاپور (0/1 sections)</summary>
+
 - [ ] 35.22 · پادشاهی بهرام شاپور
 
 </details>
 
 <details>
-<summary>○ 36 · پادشاهی یزدگرد بزه (0/9 sections)</summary>
+<summary>○ 48 · پادشاهی یزدگرد بزه‌گر (0/9 sections)</summary>
 
 - [ ] 36.01 · پادشاهی یزدگرد بزه
 - [ ] 36.02 · آوردن نعمان، بهرام گور را بنزد پدر
@@ -831,7 +910,7 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 37 · پادشاهی بهرام گور (0/21 sections)</summary>
+<summary>○ 49 · پادشاهی بهرام گور (0/21 sections)</summary>
 
 - [ ] 37.01 · پادشاهی بهرام گور
 - [ ] 37.02 · داستان بهرام با لنبک آبکش و براهام
@@ -858,29 +937,17 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 38 · پادشاهی یزدگرد پسر بهرام گور (0/2 sections)</summary>
+<summary>○ 50 · پادشاهی یزدگرد هجده سال بود (0/4 sections)</summary>
 
 - [ ] 38.01 · پادشاهی یزدگرد پسر بهرام گور
 - [ ] 38.02 · پادشاهی هرمز یکسال بود
-
-</details>
-
-<details>
-<summary>○ 39 · پادشاهی پیروز (0/1 sections)</summary>
-
 - [ ] 39.01 · پادشاهی پیروز پسر یزدگرد
-
-</details>
-
-<details>
-<summary>○ 40 · پادشاهی بلاش (0/1 sections)</summary>
-
 - [ ] 40.01 · پادشاهی بلاش پسر پیروز
 
 </details>
 
 <details>
-<summary>○ 41 · پادشاهی قباد (0/9 sections)</summary>
+<summary>○ 51 · پادشاهی قباد چهل و سه سال بود (0/9 sections)</summary>
 
 - [ ] 41.01 · پادشاهی قباد پسر پیروز
 - [ ] 41.02 · برانگسختن بدخواهان دربار قباد را بر سوفزای
@@ -895,7 +962,7 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 42 · پادشاهی انوشیروان (0/37 sections)</summary>
+<summary>○ 52 · پادشاهی کسری نوشین روان چهل و هشت سال بود (0/37 sections)</summary>
 
 - [ ] 42.01 · پادشاهی انوشیروان
 - [ ] 42.02 · بخش کردن نوشیروان پادشاهی خود بر چهار
@@ -938,7 +1005,7 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 43 · پادشاهی هرمزد (0/18 sections)</summary>
+<summary>○ 53 · پادشاهی هرمزد دوازده سال بود (0/18 sections)</summary>
 
 - [ ] 43.01 · پادشاهی هرمزد نوشینروان
 - [ ] 43.02 · کشتن هرمزد وزیران و یاران پدرش را
@@ -962,7 +1029,7 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 44 · پادشاهی خسرو پرویز (0/40 sections)</summary>
+<summary>○ 54 · پادشاهی خسرو پرویز (0/53 sections)</summary>
 
 - [ ] 44.01 · پادشاهی خسرو پرویز
 - [ ] 44.02 · نشستن خسرو بر تخت شاهی
@@ -1004,12 +1071,6 @@ section IDs and the checklist below retain the existing grouping.
 - [ ] 44.38 · بازی ساختن گردیه و بخشیدن خسرو مردمان ری را
 - [ ] 44.39 · بخش کردن خسرو سپاهیان را بر چهار سوی کشور
 - [ ] 44.40 · زادن شیرویه فرزند خسرو از دختر قیصر
-
-</details>
-
-<details>
-<summary>○ 45 · داستان خسرو و شیرین (0/13 sections)</summary>
-
 - [ ] 45.01 · داستان خسرو و شیرین
 - [ ] 45.02 · آیین شکار خسرو و دیدن او شیرین را
 - [ ] 45.03 · پند دادن بزرگان خسرو را در کار شیرین
@@ -1027,7 +1088,7 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 46 · پادشاهی قباد مشهور بشیرویه (0/6 sections)</summary>
+<summary>○ 55 · پادشاهی شیرویه (0/6 sections)</summary>
 
 - [ ] 46.01 · پادشاهی شیرویه
 - [ ] 46.02 · پاسخ خسرو مر شیرویه را
@@ -1039,31 +1100,43 @@ section IDs and the checklist below retain the existing grouping.
 </details>
 
 <details>
-<summary>○ 47 · پادشاهی اردشیر شیروی (0/3 sections)</summary>
+<summary>○ 56 · پادشاهی اردشیر شیروی (0/2 sections)</summary>
 
 - [ ] 47.01 · پادشاهی  اردشیر شیروی
 - [ ] 47.02 · کشته شدن اردشیر بر دست پیروز خسرو
+
+</details>
+
+<details>
+<summary>○ 57 · پادشاهی فرایین (0/1 sections)</summary>
+
 - [ ] 47.03 · پادشاهی گراز نامبردار به فرایین
 
 </details>
 
 <details>
-<summary>○ 48 · پادشاهی پوراندخت (0/1 sections)</summary>
+<summary>○ 58 · پادشاهی پوران دخت (0/1 sections)</summary>
 
 - [ ] 48.01 · پادشاهی  پوراندخت
 
 </details>
 
 <details>
-<summary>○ 49 · پادشاهی آزرم دخت (0/2 sections)</summary>
+<summary>○ 59 · پادشاهی آزرم دخت (0/1 sections)</summary>
 
 - [ ] 49.01 · پادشاهی  آزرم دخت
+
+</details>
+
+<details>
+<summary>○ 60 · پادشاهی فرخ زاد (0/1 sections)</summary>
+
 - [ ] 49.02 · پادشاهی فرخ زاد
 
 </details>
 
 <details>
-<summary>○ 50 · پادشاهی یزدگرد (0/14 sections)</summary>
+<summary>○ 61 · پادشاهی یزدگرد (0/14 sections)</summary>
 
 - [ ] 50.01 · پادشاهی یزدگرد
 - [ ] 50.02 · تاخت کردن سعد وقاص بایران و فرستادن یزدگرد رستم فرخزاد را (heading only, no couplets)

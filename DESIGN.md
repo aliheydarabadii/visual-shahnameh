@@ -83,6 +83,12 @@ load cannot replace a newer destination. Critical artwork is decoded before
 mounting; navigation does not use full-page light flashes or shared-element
 view transitions.
 
+The book uses 61 chapter entries, defined by `text/chapter-map.json` and
+generated into the source and reader contents. Permanent section IDs come
+from the original PDF grouping. A section's parent is its enclosing chapter
+in the contents, never its ID prefix. Regrouping keeps section URLs, paintings
+and saved reading positions intact.
+
 ```
 threshold   →  dive  →  scene 1  →  dive  →  scene 2  → … →  last scene  →  ending
 (title on an     (portal   (couplets     (portal                                (night gathers,
@@ -275,7 +281,8 @@ src/engine/reading-progress.ts  versioned local reading position and storage fal
 src/engine/sound-toggle.ts  the «آوا» button and when sound may start
 src/styles/contents.css contents styles
 public/favicon.*        the شمسه icon (svg, ico, apple-touch-icon, 512px png)
-src/content/toc.json    every chapter + section title, English chapter names
+src/content/toc.json    the 61 chapters and their Persian section titles
+text/chapter-map.json   chapter organization and permanent source section ranges
 src/content/types.ts    Section / Scene / Couplet types: the content contract
 src/content/index.ts    discovers sections/*.ts (no list to edit), lazy imports
 src/content/sections/   one file per section, NN-NN.ts: couplets + scenes + sound
