@@ -128,8 +128,9 @@ The `work/claims/` locks still coordinate agents sharing one checkout.
 ## Chapter checklist
 
 As of 2026-11-07, chapters 01–07 are complete through **07.18, درگذشتن فریدون**.
-Chapter 08 is implemented through **09.31, اندرز کردن منوچهر**; remaining phone
-composition issues are documented in its [section reports](reports/).
+Chapter 08 is implemented through **09.31, اندرز کردن منوچهر**. The portrait
+reader keeps the painting above its verses; validation is recorded in the
+[section reports](reports/).
 The app includes **71 of 645 sections** and **3,595 couplets**, with paintings
 and generative music.
 Next: **10.01, پادشاهی نوذر**. Unchecked chapters remain to be illustrated and scored.
